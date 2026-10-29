@@ -1,0 +1,62 @@
+name: Build HEYYANIXX APK
+
+# Runs on GitHub's machine (free), builds a debug APK.
+# Trigger: every push to main, or manually from Actions > Run workflow.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Capacitor Android project
+        run: |
+          if [ ! -d android ]; then
+            npx cap add android
+          fi
+          npx cap sync android
+
+      - name: Apply HEYYANIXX icon + splash
+        run: |
+          RES=android/app/src/main/res
+          rm -rf $RES/mipmap-anydpi-v26
+          for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            mkdir -p $RES/mipmap-$d
+            cp resources/android/ic_launcher-$d.png $RES/mipmap-$d/ic_launcher.png
+            cp resources/android/ic_launcher-$d.png $RES/mipmap-$d/ic_launcher_round.png
+          done
+          find $RES -name splash.png | while read f; do
+            case "$f" in *land*) cp resources/android/splash-land.png "$f";; *) cp resources/android/splash-port.png "$f";; esac
+          done
+          chmod +x android/gradlew
+
+      - name: Build debug APK with Gradle
+        working-directory: android
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: heyyanixx-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

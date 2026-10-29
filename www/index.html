@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HEYYANIXX — AI Video Editor & Creator</title>
+<meta name="description" content="HEYYANIXX (Heyy Anish) — AI Video Editor & Creator from India. Reels, montages, AI cinematic videos, thumbnails and gaming content.">
+<meta name="theme-color" content="#060608">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta property="og:title" content="HEYYANIXX — AI Video Editor &amp; Creator">
+<meta property="og:description" content="Reels, AI cinematic videos, thumbnails &amp; gaming edits by Heyy Anish. Hire me in the app.">
+<meta property="og:image" content="https://heyyanixx-app.sites.tab.bot/icon-512.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23060608'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23e3b65a' font-family='Arial' font-weight='bold'>H</text></svg>">
+<style>
+:root{--bg:#060608;--card:#121216;--card2:#1a1a20;--gold:#e3b65a;--gold2:#f5d48a;--text:#fff;--muted:#b8b8c2;--line:#26262e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold)}button{font:inherit;cursor:pointer}
+.app{max-width:520px;margin:0 auto;padding:0 16px 110px}
+header{position:sticky;top:0;z-index:20;background:rgba(6,6,8,.92);backdrop-filter:blur(10px);padding:14px 0 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-weight:900;letter-spacing:2px;font-size:20px}.logo span{color:var(--gold)}
+.iconbtn{background:var(--card);border:1px solid var(--line);color:#fff;border-radius:999px;padding:8px 12px;font-size:13px}
+.hero{margin:16px 0;background:linear-gradient(160deg,#1c1708,#060608 60%);border:1px solid #3a2f16;border-radius:22px;padding:20px;overflow:hidden}
+.hero h1{font-size:34px;line-height:1;margin:6px 0}.hero h1 span{color:var(--gold)}
+.tag{color:var(--gold);font-weight:700;letter-spacing:1px;font-size:13px;text-transform:uppercase}
+.muted{color:var(--muted);line-height:1.6;font-size:15px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:#111;border:0;border-radius:999px;padding:13px 18px;font-weight:800;box-shadow:0 0 0 1px #f5d48a66,0 8px 28px #e3b65a55;transition:.2s}
+.btn:active{transform:scale(.97)}.btn.ghost{background:transparent;color:#fff;border:1px solid var(--gold);box-shadow:none}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}
+video,img{width:100%;display:block;border-radius:16px}
+.banner{border-radius:18px;overflow:hidden;border:1px solid var(--line);margin:14px 0;background:#000}
+.banner video{display:block;width:100%;height:min(62vh,560px);object-fit:contain;background:#000;border-radius:0}
+h2{font-size:24px;margin:26px 0 6px}h3{margin:10px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+.chip{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13px;margin:4px 4px 0 0}
+.chip.active{background:var(--gold);color:#111;border-color:var(--gold);font-weight:800}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.work{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;cursor:pointer;padding:0;text-align:left;color:#fff}
+.work img,.work video{aspect-ratio:3/4;object-fit:cover;border-radius:0}
+.work .cap{position:absolute;left:0;right:0;bottom:0;padding:28px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-size:13px;font-weight:700}
+.price{font-size:22px;font-weight:900;color:var(--gold)}
+input,select,textarea{width:100%;background:#0e0e12;border:1px solid var(--line);color:#fff;border-radius:12px;padding:12px;margin:6px 0 12px;font-size:15px}
+label{font-size:13px;color:var(--muted);font-weight:700}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}summary{font-weight:800;cursor:pointer}
+.bar{height:8px;background:#222;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold)}
+.screen{display:none;animation:fade .25s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 1px #f5d48a66,0 8px 28px #e3b65a44}50%{box-shadow:0 0 0 1px #f5d48a99,0 8px 34px #e3b65a77}}
+.glow{animation:glow 2.4s infinite}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:520px;background:#0c0c10;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 6px calc(10px + env(safe-area-inset-bottom));z-index:30}
+nav button{background:none;border:0;color:var(--muted);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px}
+nav button.active{color:var(--gold)}nav button b{font-size:20px;font-weight:400}
+#chatFab{position:fixed;right:16px;bottom:86px;z-index:31;width:56px;height:56px;border-radius:50%;background:var(--gold);border:0;font-size:24px;box-shadow:0 10px 30px #e3b65a66}
+#chatBox{position:fixed;right:12px;bottom:150px;z-index:32;width:min(360px,calc(100vw - 24px));background:#121216;border:1px solid var(--line);border-radius:18px;display:none;flex-direction:column;overflow:hidden}
+#chatBox.open{display:flex}#chatMsgs{height:280px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:10px 12px;border-radius:14px;font-size:14px;line-height:1.5}.msg.me{align-self:flex-end;background:var(--gold);color:#111}.msg.bot{align-self:flex-start;background:#222}
+#player{position:fixed;inset:0;background:#000;z-index:50;display:none;flex-direction:column}#player.open{display:flex}
+#player video{flex:1;object-fit:contain;border-radius:0}
+#moreSheet{position:fixed;left:50%;transform:translateX(-50%);bottom:72px;width:100%;max-width:520px;background:#121216;border:1px solid var(--line);border-bottom:0;border-radius:20px 20px 0 0;padding:16px;display:none;z-index:29}
+#moreSheet.open{display:block}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:90px;background:#fff;color:#111;padding:12px 16px;border-radius:999px;font-weight:700;z-index:60;display:none}
+.small{font-size:13px;color:var(--muted)}
+/* Glassy Login Form v3 — adapted to HEYYANIXX gold/black, inspired by the video you shared */
+.login-bg{background:radial-gradient(120% 60% at 20% 0%,rgba(227,182,90,.22),transparent 55%),radial-gradient(100% 50% at 90% 20%,rgba(227,182,90,.14),transparent 50%),linear-gradient(135deg,#0a0a12,#060608 60%);border-radius:22px;padding:18px;margin:16px 0;overflow:hidden}
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(227,182,90,.35);border-radius:22px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .35s ease,opacity .35s ease}
+.glass:hover{transform:translateY(-3px)}
+.glass h3{font-size:26px;margin:4px 0}.glass .sub{color:var(--muted);font-size:14px;line-height:1.5}
+.glass input{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14)}
+.btn-gold{background:linear-gradient(135deg,#f5d48a,#e3b65a,#b98a2e);color:#111;border:0;border-radius:999px;padding:14px 18px;font-weight:900;width:100%;box-shadow:0 10px 30px #e3b65a55}
+.btn-social{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:999px;padding:11px 12px;font-weight:700;width:100%}
+.login-form{animation:fade .35s ease}
+@keyframes spinDiamond{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.spin{animation:spinDiamond .6s ease}
+.login-toggle{color:var(--gold);font-weight:800;cursor:pointer;background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo">HEYY<span>ANIXX</span></div>
+  <div class="row" style="flex:0 0 auto;gap:6px">
+    <button class="iconbtn" onclick="enablePush()">🔔 Notify</button>
+    <button class="iconbtn" onclick="shareApp()">↗ Share</button>
+    <!-- Login hidden until a real backend exists: <button class="iconbtn" id="loginHeaderBtn" onclick="go('login')">👤 Login</button> -->
+  </div>
+</header>
+
+<!-- HOME -->
+<section class="screen active" id="s-home">
+  <div class="hero">
+    <div class="tag">Heyy Anish • India</div>
+    <h1>AI Video Editor <span>&amp; Creator</span></h1>
+    <p class="muted">Chalo, kuch amazing banate hain! Reels, cinematic AI videos, thumbnails aur gaming edits — sab ek jagah, premium quality ke saath.</p>
+    <div class="banner">
+      <video id="heroVideo" src="https://heyyanixx.sites.tab.bot/ads/heyyanixx-ad-v2.mp4" poster="assets/ad-v2.jpg" autoplay muted loop playsinline preload="metadata" onclick="this.muted=!this.muted" aria-label="HEYYANIXX brand ad"></video>
+    </div>
+    <p class="small">My brand ad — tap the video for sound 🔊</p>
+    <div class="row">
+      <button class="btn ghost" onclick="window.open('https://heyyanixx.sites.tab.bot/','_blank')">🌐 My Website →</button>
+      <button class="btn ghost" onclick="openIG()">📸 Instagram Reels →</button>
+    </div>
+    <div class="row">
+      <button class="btn glow" onclick="go('order')">Hire Me →</button>
+      <button class="btn ghost" onclick="go('work')">See Work</button>
+    </div>
+  </div>
+  <div class="card" id="offerBanner"><b>🔥 Offer:</b> Use code <b style="color:var(--gold)">HEYYANI69</b> for 50% off on Services. Limited time, bhai!</div>
+  <h2>Quick picks</h2>
+  <div class="row">
+    <button class="btn ghost" onclick="go('services')">Services &amp; Prices</button>
+    <button class="btn ghost" onclick="go('gaming')">Free Fire MAX</button>
+  </div>
+  <div class="card"><h3>Why HEYYANIXX?</h3><p class="muted">Fast delivery, beat-perfect cuts, AI cinematic look, aur revisions ke saath full support. 7+ years gaming experience.</p><span class="chip">Reels</span><span class="chip">AI Cinematic</span><span class="chip">Thumbnails</span><span class="chip">Gaming</span></div>
+</section>
+
+<!-- WORK -->
+<section class="screen" id="s-work">
+  <h2>Work / Portfolio</h2>
+  <p class="muted">Tap any card for full-screen player with sound. Filter karo apni pasand se.</p>
+  <div id="filters"></div>
+  <div class="grid" id="workGrid"></div>
+  <p class="small">Sab mera real kaam hai. ▶ cards play right here with sound; ↗ cards open the reel on Instagram / YouTube.</p>
+  <button class="btn ghost" onclick="window.open('https://heyyanixx.sites.tab.bot/','_blank')">🌐 See Full Work on My Website →</button>
+</section>
+
+<!-- SERVICES -->
+<section class="screen" id="s-services">
+  <h2>Services &amp; Prices <span style="color:var(--gold)">(INR)</span></h2>
+  <p class="muted">Starting prices hain — bada project ho to custom quote milega. Hinglish mein baat karo, koi tension nahi.</p>
+  <div class="card">
+    <label>Coupon code</label>
+    <div class="row"><input id="coupon" placeholder="Try: HEYYANI69"><button class="btn" onclick="applyCoupon()">Apply</button></div>
+    <p class="small" id="couponMsg">HEYYANI69 = 50% off. Coupon Services aur Order dono mein kaam karega.</p>
+  </div>
+  <div id="serviceList"></div>
+</section>
+
+<!-- ORDER -->
+<section class="screen" id="s-order">
+  <h2>Order / Hire Me</h2>
+  <p class="muted">Form bharo, main jaldi reply karunga. Payment UPI se hota hai — details order confirm hone ke baad milengi.</p>
+  <form class="card" onsubmit="submitOrder(event)">
+    <label>Your name *</label><input id="o-name" required placeholder="e.g. Rahul Sharma">
+    <label>What do you need? *</label>
+    <select id="o-need"><option>Reels edit ₹499+</option><option>Montage ₹999+</option><option>AI cinematic video ₹1,499+</option><option>AI image prompt ₹199+</option><option>Photo retouch ₹299+</option><option>Something else / Custom</option></select>
+    <label>Budget (INR)</label><input id="o-budget" inputmode="numeric" placeholder="e.g. 999">
+    <label>Deadline</label><input id="o-date" type="date">
+    <label>Details / link to reference</label><textarea id="o-details" rows="4" placeholder="Video ka vibe, song, colours, examples..."></textarea>
+    <label>Upload reference (optional, for your record)</label><input id="o-file" type="file" accept="image/*,video/*">
+    <p class="small" id="o-fileNote"></p>
+    <div class="row">
+      <button class="btn" type="submit">Send via Email →</button>
+      <button class="btn ghost" type="button" onclick="openIG()">Open Instagram DM</button>
+    </div>
+    <p class="small">Email opens with your order pre-filled to kranish7900@gmail.com. Instagram DM ke liye profile khulega — wahan Message tap karo. No phone number is shown in this app.</p>
+  </form>
+</section>
+
+<!-- GAMING -->
+<section class="screen" id="s-gaming">
+  <h2>Gaming — Free Fire MAX</h2>
+  <p class="muted">Free Fire MAX — 7+ years, Lv. 72, Heroic rank, guild The Mafia. Text-only gaming identity here, no official game logos used.</p>
+  <div class="card"><h3>🎮 My Gaming Identity</h3><img src="assets/ff-avatar.jpg" alt="HEYYANIXX gaming avatar"><p><b>Lv. 72 • Heroic • 7+ years</b><br>Guild: The Mafia<br>Paid custom rooms: quote on request — Order form mein “Custom” likh ke bhejo.</p></div>
+  <h3>Latest Reels &amp; Shorts</h3>
+  <div class="card"><b>🔥 Latest Short — Free Fire India</b><button class="work" style="width:100%;margin:10px 0" onclick="window.open('https://youtube.com/shorts/ILpcLXzveeM','_blank')"><img src="assets/ff-india-short.jpg" alt="Free Fire India YouTube Short" loading="lazy" style="aspect-ratio:4/3"><div class="cap">↗ FF India Short<br><span style="font-weight:400;color:#ddd">Watch on YouTube</span></div></button><p class="muted">Free Fire India pe Shorts aate rehte hain — channel follow karo!</p><div class="row"><button class="btn ghost" onclick="window.open('https://www.instagram.com/heyyy.anixx_/','_blank')">Instagram Reels</button><button class="btn ghost" onclick="window.open('https://www.youtube.com/@smart_anish69','_blank')">YouTube Shorts</button></div></div>
+  <div class="card"><b>▶ YouTube Channel</b><p class="muted">@smart_anish69 — Shorts, montages aur gaming edits.</p><button class="btn" onclick="window.open('https://www.youtube.com/@smart_anish69','_blank')">Watch on YouTube →</button></div>
+</section>
+
+<!-- AI LAB -->
+<section class="screen" id="s-ailab">
+  <h2>AI Lab 🧪</h2>
+  <p class="muted">Main sirf AI use nahi karta — main AI se build karta hoon. Experiments, prompts, agents aur cinematic visuals.</p>
+  <div class="card"><h3>Tools I Use</h3><span class="chip">Premiere Pro</span><span class="chip">After Effects</span><span class="chip">Photoshop</span><span class="chip">CapCut</span><span class="chip">Alight Motion</span><span class="chip">Lightroom</span><span class="chip">DaVinci Resolve</span><span class="chip">Higgsfield AI</span><span class="chip">Gemini</span><p class="small">Tool names are text only — no brand logos in this app.</p></div>
+  <div class="card"><h3>✨ Prompt of the Day — FREE</h3><p id="promptText"></p><div class="row"><button class="btn" onclick="copyPrompt()">Copy Prompt</button><button class="btn ghost" onclick="newPrompt()">New Prompt ↻</button></div></div>
+  <div class="card"><h3>Want a custom AI prompt?</h3><p class="muted">AI image prompt service sirf ₹199+ se shuru. Order form mein select karo.</p><button class="btn" onclick="go('order')">Order AI Prompt →</button></div>
+</section>
+
+<!-- ABOUT -->
+<section class="screen" id="s-about">
+  <h2>About Me</h2>
+  <div class="card"><h3>More than an editor.</h3><p class="muted">I'm HEYYANIXX — Heyy Anish, a creator from India focused on editing, AI, gaming and digital experiences. Cinematic visuals, AI-powered content aur interactive websites — technology meets visual storytelling.</p><p><b>Creator ID:</b> HX/01 • <b>Role:</b> Editor / AI Creator / Gamer</p></div>
+  <h3>Skills</h3>
+  <div class="card"><span class="chip">🎬 Video Editing</span><span class="chip">🤖 AI Tools</span><span class="chip">🖼 Thumbnails</span><span class="chip">💻 Coding — BCA AI Student</span></div>
+  <div class="card"><h3>💻 My Setup</h3><p><b>ASUS TUF Gaming A15</b> — where the work happens.<br>Plus phone + editing setup for reels on the go.</p></div>
+</section>
+
+<!-- CONTACT -->
+<section class="screen" id="s-contact">
+  <h2>Contact &amp; Socials</h2>
+  <p class="muted">Seedha connect karo — DM ya email, jo easy lage.</p>
+  <div class="card" onclick="window.open('https://www.instagram.com/heyyy.anixx_/','_blank')"><b>📸 Instagram</b><br>@heyyy.anixx_ — tap to open</div>
+  <div class="card" onclick="window.open('https://www.youtube.com/@smart_anish69','_blank')"><b>▶ YouTube</b><br>@smart_anish69 — tap to open</div>
+  <div class="card" onclick="window.open('https://github.com/heyyanixx','_blank')"><b>💻 GitHub</b><br>heyyanixx — tap to open</div>
+  <div class="card" onclick="window.open('https://lnk.bio/Heyyanixx','_blank')"><b>🔗 All Links</b><br>lnk.bio/Heyyanixx — tap to open</div>
+  <div class="card" onclick="location.href='mailto:kranish7900@gmail.com'"><b>✉ Email</b><br>kranish7900@gmail.com — tap to email</div>
+  <div class="card"><b>↗ Share this app</b><p class="muted">App pasand aayi? Doston ko bhejo, bhai!</p><button class="btn" onclick="shareApp()">Share App →</button></div>
+</section>
+
+<!-- FAQ -->
+<section class="screen" id="s-faq">
+  <h2>FAQ</h2>
+  <details open><summary>How do I order?</summary><p class="muted">Order form bharo → Email ya Instagram DM se bhejo → Main confirm karke UPI payment details bhejunga → Kaam shuru.</p></details>
+  <details><summary>Payment kaise hoti hai? (UPI)</summary><p class="muted">Payment UPI se hoti hai. Order confirm hone ke baad UPI details share ki jaati hain. Advance payment ke baad hi editing start hoti hai.</p></details>
+  <details><summary>Delivery time kitna hai?</summary><p class="muted">Typical: Reels 24–48 hours, Montage 2–3 days, AI cinematic video 3–5 days. Deadline Order form mein likho, main try karunga usse pehle deliver karne ka.</p></details>
+  <details><summary>Revisions milengi?</summary><p class="muted">Haan — 2 minor revisions included hain. Bade changes ya naya concept extra charge par hoga, pehle bata diya jayega.</p></details>
+  <details><summary>Coupon kaise use karun?</summary><p class="muted">Services screen par HEYYANI69 daalo — 50% off lag jayega. Order karte time coupon ka naam details mein likh dena.</p></details>
+</section>
+
+<!-- LOGIN — Glassy Login Form v3 style, HEYYANIXX gold/black -->
+<section class="screen" id="s-login">
+  <div class="login-bg">
+    <div style="text-align:center;margin-bottom:12px"><span id="loginDiamond" style="display:inline-block;font-size:28px;color:var(--gold)">◆</span><div class="tag" style="margin-top:6px">HEYYANIXX • Secure Account</div></div>
+    <div class="glass">
+      <!-- Sign In form -->
+      <form id="loginSignin" class="login-form" onsubmit="doSignin(event)">
+        <h3>Welcome Back</h3>
+        <p class="sub">Enter your credentials to access your secure account.</p>
+        <label>Email Address</label><input id="li-email" type="email" required placeholder="name@domain.com">
+        <label>Password</label><input id="li-pass" type="password" required placeholder="••••••••">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin:2px 0 12px">
+          <label style="display:flex;gap:6px;align-items:center;margin:0"><input type="checkbox" id="li-remember" checked style="width:auto;margin:0"> Remember me</label>
+          <button type="button" class="login-toggle" onclick="forgotPass()">Forgot password?</button>
+        </div>
+        <button class="btn-gold" type="submit">Sign In →</button>
+        <div class="row" style="margin-top:12px">
+          <button type="button" class="btn-social" onclick="socialLogin('Google')">G &nbsp;Google</button>
+          <button type="button" class="btn-social" onclick="socialLogin('Apple')"> &nbsp;Apple</button>
+        </div>
+        <p style="text-align:center;font-size:14px;color:var(--muted)">Don't have an account? <button type="button" class="login-toggle" onclick="toggleLogin('signup')">Sign Up</button></p>
+      </form>
+      <!-- Create Account form -->
+      <form id="loginSignup" class="login-form" style="display:none" onsubmit="doSignup(event)">
+        <h3>Create Account</h3>
+        <p class="sub">Join today to access your secure workspace.</p>
+        <label>Full Name</label><input id="su-name" required placeholder="Alex Johnson">
+        <label>Email Address</label><input id="su-email" type="email" required placeholder="name@domain.com">
+        <div class="row"><div><label>Password</label><input id="su-pass" type="password" required placeholder="••••••••"></div><div><label>Confirm Password</label><input id="su-confirm" type="password" required placeholder="••••••••"></div></div>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted)"><input type="checkbox" id="su-terms" required style="width:auto;margin:2px 0 0"> I agree to the Terms &amp; Privacy Policy</label>
+        <button class="btn-gold" type="submit" style="margin-top:12px">Create Account →</button>
+        <div class="row" style="margin-top:12px">
+          <button type="button" class="btn-social" onclick="socialLogin('Google')">G &nbsp;Google</button>
+          <button type="button" class="btn-social" onclick="socialLogin('Apple')"> &nbsp;Apple</button>
+        </div>
+        <p style="text-align:center;font-size:14px;color:var(--muted)">Already have an account? <button type="button" class="login-toggle" onclick="toggleLogin('signin')">Sign In</button></p>
+      </form>
+      <!-- Logged-in state -->
+      <div id="loginDone" style="display:none;text-align:center">
+        <h3 id="loginWelcome">Welcome back!</h3>
+        <p class="sub" id="loginUserLine"></p>
+        <p class="muted">You're signed in on this device. Your name will auto-fill in the Order form.</p>
+        <div class="row"><button class="btn" onclick="go('order')">Order / Hire →</button><button class="btn ghost" onclick="doLogout()">Log Out</button></div>
+      </div>
+    </div>
+    <p class="small" style="text-align:center;margin-top:12px">Demo login only in this PWA version — accounts are saved on this device only, passwords are not stored. For real login, connect Firebase Auth / a backend before publishing. No phone number is asked or shown here.</p>
+  </div>
+</section>
+
+<!-- ADMIN (hidden view, opened from More) -->
+<section class="screen" id="s-admin">
+  <h2>Admin Panel 🔒</h2>
+  <p class="muted">Sirf tumhare liye. Yahan se naya work add karo, prices badlo, offer badlo. Changes isi device/browser mein save hote hain (localStorage) — Play version ke liye Firebase / backend steps README mein hain.</p>
+  <div class="card" id="adminLogin">
+    <label>Admin passcode</label><input id="adminPass" type="password" placeholder="Enter passcode">
+    <button class="btn" onclick="adminLogin()">Unlock Admin</button>
+  </div>
+  <div id="adminPanel" style="display:none">
+    <div class="card"><h3>Add New Work</h3><label>Title</label><input id="a-title" placeholder="e.g. New Gaming Reel"><label>Category</label><select id="a-cat"><option>Video Edits</option><option>AI Cinematic</option><option>Thumbnails</option><option>Photo Edits</option><option>Gaming</option></select><label>Type</label><select id="a-type"><option value="video">Video</option><option value="image">Image</option></select><label>Media URL (MP4 or image link)</label><input id="a-media" placeholder="https://..."><label>Poster image URL (optional)</label><input id="a-poster" placeholder="https://..."><button class="btn" onclick="addWork()">Add Work →</button></div>
+    <div class="card"><h3>Change Price</h3><label>Service</label><select id="a-service"></select><label>New starting price (INR)</label><input id="a-price" type="number"><button class="btn" onclick="changePrice()">Update Price</button></div>
+    <div class="card"><h3>Change Offer Banner</h3><input id="a-offer" placeholder="New offer text"><button class="btn" onclick="changeOffer()">Update Offer</button><button class="btn ghost" onclick="resetData()">Reset to defaults</button></div>
+  </div>
+</section>
+</div>
+
+<nav>
+  <button class="active" onclick="go('home',this)"> <b>⌂</b>Home</button>
+  <button onclick="go('work',this)"> <b>▦</b>Work</button>
+  <button onclick="go('services',this)"> <b>₹</b>Services</button>
+  <button onclick="go('gaming',this)"> <b>🎮</b>Gaming</button>
+  <button onclick="toggleMore(this)"> <b>☰</b>More</button>
+</nav>
+
+<div id="moreSheet">
+  <div class="row">
+    <button class="btn ghost" onclick="go('order');toggleMore()">Order / Hire</button>
+    <button class="btn ghost" onclick="go('ailab');toggleMore()">AI Lab</button>
+  </div><div class="row" style="margin-top:8px">
+    <button class="btn ghost" onclick="go('about');toggleMore()">About</button>
+    <button class="btn ghost" onclick="go('contact');toggleMore()">Contact</button>
+  </div><div class="row" style="margin-top:8px">
+    <button class="btn ghost" onclick="go('faq');toggleMore()">FAQ</button>
+    <button class="btn ghost" onclick="go('admin');toggleMore()">🔒 Admin</button>
+  </div><div class="row" style="margin-top:8px">
+    <button class="btn ghost" onclick="shareApp();toggleMore()">↗ Share App</button>
+    <button class="btn ghost" onclick="go('home');toggleMore()">⌂ Home</button>
+    <!-- Login hidden until a real backend exists: <button class="btn ghost" onclick="go('login');toggleMore()">👤 Login / Sign Up</button> -->
+  </div>
+</div>
+
+<button id="chatFab" onclick="toggleChat()">💬</button>
+<div id="chatBox">
+  <div style="padding:14px;background:#1a1a20;border-bottom:1px solid var(--line)"><b>Ask HEYYANIXX 💬</b><br><span class="small">WhatsApp-style chat — in-app only. Real reply Instagram DM / email se milega.</span></div>
+  <div id="chatMsgs"><div class="msg bot">Hey! Main HEYYANIXX hoon. Price, order ya gaming ke baare mein poochho — main help kar dunga! ✨</div></div>
+  <div style="display:flex;gap:8px;padding:10px"><input id="chatInput" placeholder="Type your question..." style="margin:0"><button class="btn" onclick="sendChat()">Send</button></div>
+  <button class="btn ghost" style="margin:0 10px 10px" onclick="openIG()">Continue on Instagram DM →</button>
+</div>
+
+<div id="player">
+  <div style="padding:12px;display:flex;justify-content:space-between;align-items:center"><b id="playerTitle"></b><button class="btn ghost" onclick="closePlayer()">✕ Close</button></div>
+  <video id="playerVideo" controls playsinline></video>
+  <img id="playerImg" style="display:none;flex:1;object-fit:contain">
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// ===== HEYYANIXX APP — CHANGE THESE BEFORE PUBLISHING =====
+const ADMIN_PASS = 'zKy3RgDJ';
+const EMAIL = 'kranish7900@gmail.com';
+const IG_URL = 'https://www.instagram.com/heyyy.anixx_/';
+const YT_URL = 'https://www.youtube.com/@smart_anish69';
+const PLAY_URL = 'https://play.google.com/store'; // <-- replace with your Play listing after publishing
+const COUPON_CODE = 'HEYYANI69';
+let couponOn = false;
+
+const WORKS_VERSION = 3;
+const DEFAULT_WORKS = [
+  {"title": "Aroma Restaurant, Dumka — Promo Edit", "sub": "Local business promo · unpaid practice project", "cat": "Video Edits", "type": "video", "media": "https://heyyanixx.sites.tab.bot/assets/work/aroma-dumka-promo.mp4", "poster": "assets/aroma.jpg"},
+  {"title": "HEYYANIXX Brand Ad v2 — Not Just an Editor", "sub": "My own brand ad", "cat": "Video Edits", "type": "video", "media": "https://heyyanixx.sites.tab.bot/ads/heyyanixx-ad-v2.mp4", "poster": "assets/ad-v2.jpg", "link": "https://youtube.com/shorts/bBHSrBbfuBU"},
+  {"title": "HEYYANIXX Brand Ad v1 — Same Basic Edits?", "sub": "My own brand ad", "cat": "Video Edits", "type": "video", "media": "https://heyyanixx.sites.tab.bot/ads/heyyanixx-ad-v1.mp4", "poster": "assets/ad-v1.jpg", "link": "https://youtube.com/shorts/sBf1mW_TH0I"},
+  {"title": "Free Fire India Short", "sub": "YouTube Short", "cat": "Gaming", "type": "link", "link": "https://youtube.com/shorts/ILpcLXzveeM", "poster": "assets/ff-india-short.jpg"},
+  {"title": "FF India — YouTube Thumbnail", "sub": "Thumbnail design", "cat": "Thumbnails", "type": "image", "media": "assets/thumb-ff-india.jpg", "poster": "assets/thumb-ff-india.jpg"},
+  {"title": "FF India — Reel Cover", "sub": "Cover design", "cat": "Thumbnails", "type": "image", "media": "assets/cover-ff-india.jpg", "poster": "assets/cover-ff-india.jpg"},
+  {"title": "BHOOL BHULAIYAA — AI Trailer Edit", "sub": "AI cinematic · YouTube Short", "cat": "AI Cinematic", "type": "link", "link": "https://youtube.com/shorts/0GZ_yNXh6Mk", "poster": "assets/ai-bhool.jpg"},
+  {"title": "Gemini AI Prompt Edit", "sub": "AI photo editing · YouTube Short", "cat": "AI Cinematic", "type": "link", "link": "https://youtube.com/shorts/zJ_TIsO28W8", "poster": "assets/ai-gemini.jpg"},
+  {"title": "360° Identity — Mafia Anish", "sub": "AI identity visual", "cat": "AI Cinematic", "type": "image", "media": "assets/ai-identity.jpg", "poster": "assets/ai-identity.jpg"},
+  {"title": "New Year 2026 · Mandar Hills", "sub": "Travel reel · Instagram", "cat": "Video Edits", "type": "link", "link": "https://www.instagram.com/reel/DS9KDjuEecm/", "poster": "assets/ig-newyear.jpg"},
+  {"title": "SWITCH — Transition Edit", "sub": "Reel · Instagram", "cat": "Video Edits", "type": "link", "link": "https://www.instagram.com/reel/DbNoxPTOkfq/", "poster": "assets/ig-switch.jpg"},
+  {"title": "EDIT — Reel Edit", "sub": "Reel · Instagram", "cat": "Video Edits", "type": "link", "link": "https://www.instagram.com/reel/DbNMY9hpi3s/", "poster": "assets/ig-edit.jpg"},
+  {"title": "Style — Style Reel", "sub": "Reel · Instagram", "cat": "Video Edits", "type": "link", "link": "https://www.instagram.com/reel/DbNJlgiI70i/", "poster": "assets/ig-style.jpg"},
+  {"title": "Travel Reel", "sub": "Travel edit · Instagram", "cat": "Video Edits", "type": "link", "link": "https://www.instagram.com/reel/DazdUSCIaof/", "poster": "assets/ig-travel.jpg"},
+  {"title": "Portrait Edit", "sub": "Photo edit · Instagram", "cat": "Photo Edits", "type": "image", "media": "assets/portrait.jpg", "poster": "assets/portrait.jpg", "link": "https://www.instagram.com/p/Dbc7en-IQZi/"},
+  {"title": "Free Fire In-Game Character", "sub": "Free Fire MAX", "cat": "Gaming", "type": "image", "media": "assets/ff-ingame.jpg", "poster": "assets/ff-ingame.jpg"}
+];
+const DEFAULT_SERVICES = [
+  {id:'reels',name:'Reels Edit',price:499,desc:'Beat-perfect short-form edit for Instagram / Shorts.'},
+  {id:'montage',name:'Montage',price:999,desc:'Gaming / cinematic montage with sync cuts and effects.'},
+  {id:'ai-cinematic',name:'AI Cinematic Video',price:1499,desc:'AI visuals + cinematic edit, story-driven.'},
+  {id:'ai-prompt',name:'AI Image Prompt',price:199,desc:'Custom cinematic prompt, ready to generate.'},
+  {id:'retouch',name:'Photo Retouch',price:299,desc:'Professional retouch, clean skin + colour grade.'},
+];
+const PROMPTS = [
+  'Cinematic portrait of a gamer in a neon-lit room, gold rim light, shallow depth of field, film grain, 35mm, ultra detailed.',
+  'AI cinematic shot: lone creator walking through a rainy Mumbai street at night, reflections, anamorphic lens flare, moody gold + black palette.',
+  'Epic gaming montage frame: player silhouette with glowing gold aura, dramatic smoke, high contrast, action freeze-frame.',
+  'Product-style thumbnail prompt: bold subject on matte black background, gold outline glow, big readable expression, high contrast.',
+  'Dreamy AI visual: futuristic Indian creator studio, holographic screens, warm gold lighting, cinematic wide shot.',
+  'Before/after retouch prompt: clean studio portrait, soft golden hour light, natural skin texture, premium magazine look.',
+  'Short-form hook visual: fast zoom, bold gold text space on top, energetic pose, dark background for high CTR thumbnail.',
+];
+function load(k,def){try{const v=JSON.parse(localStorage.getItem(k));return v||def}catch(e){return def}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+let works = load('heyyanixx_works',DEFAULT_WORKS);
+// New portfolio version: reset to the real work list, keep anything added from Admin (custom:true)
+if(localStorage.getItem('heyyanixx_works_v')!==String(WORKS_VERSION)){works=DEFAULT_WORKS.concat((Array.isArray(works)?works:[]).filter(w=>w&&w.custom));save('heyyanixx_works',works);localStorage.setItem('heyyanixx_works_v',String(WORKS_VERSION));}
+let services = load('heyyanixx_services',DEFAULT_SERVICES);
+let offerText = localStorage.getItem('heyyanixx_offer') || '🔥 Offer: Use code HEYYANI69 for 50% off on Services. Limited time, bhai!';
+let filter = 'All';
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+function go(screen,btn){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('s-'+screen); if(el) el.classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('moreSheet').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMore(){document.getElementById('moreSheet').classList.toggle('open')}
+function renderFilters(){
+  const cats=['All','Video Edits','AI Cinematic','Thumbnails','Photo Edits','Gaming'];
+  document.getElementById('filters').innerHTML=cats.map(c=>`<button class="chip ${c===filter?'active':''}" onclick="setFilter('${c}')">${c}</button>`).join('');
+}
+function setFilter(c){filter=c;renderFilters();renderWorks()}
+function renderWorks(){
+  const list = works.filter(w=>filter==='All'||w.cat===filter);
+  document.getElementById('workGrid').innerHTML = list.map((w,i)=>{
+    const sub = w.sub ? w.sub : w.cat;
+    if(w.type==='link'){
+      const where = /youtu/.test(w.link||'') ? 'YouTube' : (/instagram/.test(w.link||'') ? 'Instagram' : 'Website');
+      const pic = w.poster ? `<img src="${w.poster}" alt="${w.title}" loading="lazy">` : `<div style="aspect-ratio:3/4;background:linear-gradient(160deg,#1c1708,#060608);display:flex;align-items:center;justify-content:center;font-size:44px">▶</div>`;
+      return `<button class="work" onclick="window.open('${w.link}','_blank')">
+      ${pic}
+      <div class="cap">↗ ${w.title}<br><span style="font-weight:400;color:#ddd">${sub} • Watch on ${where}</span></div>
+    </button>`;
+    }
+    return `<button class="work" onclick="openPlayer(${works.indexOf(w)})">
+      <img src="${w.poster||w.media}" alt="${w.title}" loading="lazy">
+      <div class="cap">${w.type==='video'?'▶ ':'🖼 '} ${w.title}<br><span style="font-weight:400;color:#ddd">${sub}</span></div>
+    </button>`;
+  }).join('') || '<p class="muted">No work in this category yet. Admin se add karo.</p>';
+}
+function openPlayer(idx){
+  const w=works[idx]; if(!w) return;
+  document.getElementById('playerTitle').textContent=w.title+' • '+w.cat;
+  const v=document.getElementById('playerVideo'), img=document.getElementById('playerImg');
+  if(w.type==='video'){img.style.display='none';v.style.display='block';v.src=w.media;v.play().catch(()=>{});}
+  else{v.style.display='none';v.pause();img.style.display='block';img.src=w.media;}
+  const hv=document.getElementById('heroVideo'); if(hv) hv.pause();
+  document.getElementById('player').classList.add('open');
+}
+function closePlayer(){const v=document.getElementById('playerVideo');v.pause();v.removeAttribute('src');document.getElementById('player').classList.remove('open');const hv=document.getElementById('heroVideo'); if(hv) hv.play().catch(()=>{})}
+function priceAfter(p){return couponOn ? Math.floor(p/2) : p}
+function renderServices(){
+  document.getElementById('offerBanner').innerHTML='<b>'+offerText+'</b>';
+  document.getElementById('serviceList').innerHTML = services.map(s=>`
+    <div class="card"><div style="display:flex;justify-content:space-between;gap:10px"><div><h3 style="margin:0">${s.name}</h3><p class="muted" style="margin:6px 0">${s.desc}</p></div><div style="text-align:right"><div class="price">₹${priceAfter(s.price)}+</div>${couponOn?`<div class="small"><s>₹${s.price}</s> • 50% OFF</div>`:''}</div></div>
+    <button class="btn ghost" onclick="orderService('${s.name} ₹${priceAfter(s.price)}+')">Order this →</button></div>`).join('');
+  const sel=document.getElementById('a-service'); if(sel) sel.innerHTML=services.map(s=>`<option value="${s.id}">${s.name} — ₹${s.price}</option>`).join('');
+}
+function applyCoupon(){
+  const v=(document.getElementById('coupon').value||'').trim().toUpperCase();
+  if(v===COUPON_CODE){couponOn=true;document.getElementById('couponMsg').textContent='✅ Coupon applied! 50% off lag gaya. Ab prices half dikhenge.';toast('Coupon applied — 50% OFF');}
+  else{couponOn=false;document.getElementById('couponMsg').textContent='❌ Galat code. Sahi code: HEYYANI69';toast('Invalid coupon')}
+  renderServices();
+}
+function orderService(txt){document.getElementById('o-need').value=document.getElementById('o-need').options[0].text; document.getElementById('o-details').value='Service: '+txt+(couponOn?' | Coupon: HEYYANI69 (50% OFF)':''); go('order'); toast('Service order form mein pre-fill ho gaya');}
+function submitOrder(e){
+  e.preventDefault();
+  const name=document.getElementById('o-name').value.trim();
+  const need=document.getElementById('o-need').value;
+  const budget=document.getElementById('o-budget').value;
+  const date=document.getElementById('o-date').value;
+  const details=document.getElementById('o-details').value;
+  const file=document.getElementById('o-file').files[0];
+  const body=`Name: ${name}%0D%0AWhat I need: ${encodeURIComponent(need)}%0D%0ABudget: ₹${encodeURIComponent(budget)}%0D%0ADeadline: ${encodeURIComponent(date)}%0D%0ADetails: ${encodeURIComponent(details)}%0D%0AReference file: ${file?encodeURIComponent(file.name):'None attached — will share via DM if needed'}%0D%0ACoupon: ${couponOn?'HEYYANI69':''}`;
+  window.location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('New Order — HEYYANIXX App — '+name)}&body=${body}`;
+  toast('Email app khul raha hai — order pre-filled hai');
+}
+function openIG(){window.open(IG_URL,'_blank')}
+function enablePush(){
+  if(!('Notification' in window)){toast('Is browser mein notifications supported nahi hain');return}
+  Notification.requestPermission().then(p=>{
+    if(p==='granted'){toast('Notifications ON — naye reels & offers ki update milegi'); try{new Notification('HEYYANIXX 🔥',{body:'Welcome! Naye reels aur offers ki notification ON ho gayi.'})}catch(e){} }
+    else toast('Notifications allow karo taaki updates mil sakein');
+  });
+}
+function shareApp(){
+  const data={title:'HEYYANIXX',text:'HEYYANIXX — AI Video Editor & Creator. Reels, AI cinematic videos aur gaming edits!',url:location.href};
+  if(navigator.share){navigator.share(data).catch(()=>{})} else {navigator.clipboard.writeText(location.href).then(()=>toast('App link copy ho gaya — share karo!'))}
+}
+function rateApp(){window.open(PLAY_URL,'_blank')}
+document.getElementById('stars')?.addEventListener('click',e=>{
+  const stars='★★★★★☆☆☆☆☆'; const idx=[...document.getElementById('stars').childNodes].length;
+  document.getElementById('stars').textContent='★★★★★'; toast('Thanks bhai! 5 stars ke liye shukriya ⭐');
+});
+document.getElementById('o-file')?.addEventListener('change',e=>{
+  const f=e.target.files[0]; document.getElementById('o-fileNote').textContent=f?('Selected: '+f.name+' — email mein file attach nahi hoti automatically, isliye DM par bhi bhej dena if needed.'):'';
+});
+function toggleChat(){document.getElementById('chatBox').classList.toggle('open')}
+function sendChat(){
+  const inp=document.getElementById('chatInput'); const q=inp.value.trim(); if(!q) return;
+  const box=document.getElementById('chatMsgs');
+  box.innerHTML+=`<div class="msg me">${q.replace(/</g,'&lt;')}</div>`;
+  inp.value='';
+  let ans='Thanks for asking! Price ke liye Services dekho, order ke liye Order form bharo, ya Instagram DM par message karo — main jaldi reply karunga.';
+  const l=q.toLowerCase();
+  if(l.includes('price')||l.includes('rate')||l.includes('cost')) ans='Prices: Reels ₹499+, Montage ₹999+, AI cinematic ₹1,499+, AI prompt ₹199+, Photo retouch ₹299+. Coupon HEYYANI69 se 50% off milega!';
+  else if(l.includes('payment')||l.includes('upi')) ans='Payment UPI se hoti hai. Order confirm hone ke baad UPI details bhej dunga.';
+  else if(l.includes('delivery')||l.includes('time')||l.includes('kab')) ans='Typical delivery: Reels 24–48 hrs, Montage 2–3 days, AI cinematic 3–5 days.';
+  else if(l.includes('gaming')||l.includes('free fire')) ans='Gaming: Free Fire MAX, Lv. 72, Heroic, 7+ years, guild The Mafia. Custom rooms ke liye Order form mein Custom likho.';
+  else if(l.includes('order')||l.includes('hire')) ans='Order karne ke liye Order screen par form bharo aur Email ya Instagram DM se bhejo.';
+  box.innerHTML+=`<div class="msg bot">${ans}</div>`; box.scrollTop=box.scrollHeight;
+}
+function promptOfDay(){
+  const day=Math.floor(Date.now()/86400000);
+  return PROMPTS[day % PROMPTS.length];
+}
+function newPrompt(){document.getElementById('promptText').textContent=PROMPTS[Math.floor(Math.random()*PROMPTS.length)]}
+function copyPrompt(){navigator.clipboard.writeText(document.getElementById('promptText').textContent).then(()=>toast('Prompt copy ho gaya!'))}
+function adminLogin(){
+  if(document.getElementById('adminPass').value===ADMIN_PASS){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';toast('Admin unlocked');}
+  else toast('Galat passcode');
+}
+function addWork(){
+  const t=document.getElementById('a-title').value.trim(), media=document.getElementById('a-media').value.trim();
+  if(!t||!media){toast('Title aur Media URL zaroori hai');return}
+  works.unshift({custom:true,title:t,cat:document.getElementById('a-cat').value,type:document.getElementById('a-type').value,media,poster:document.getElementById('a-poster').value.trim()||media});
+  save('heyyanixx_works',works); renderWorks(); toast('Work add ho gaya!');
+}
+function changePrice(){
+  const id=document.getElementById('a-service').value, p=parseInt(document.getElementById('a-price').value);
+  if(!p){toast('Valid price daalo');return}
+  services=services.map(s=>s.id===id?{...s,price:p}:s); save('heyyanixx_services',services); renderServices(); toast('Price update ho gaya');
+}
+function changeOffer(){
+  offerText=document.getElementById('a-offer').value.trim()||offerText; localStorage.setItem('heyyanixx_offer',offerText); renderServices(); toast('Offer update ho gaya');
+}
+function resetData(){localStorage.removeItem('heyyanixx_works');localStorage.removeItem('heyyanixx_services');localStorage.removeItem('heyyanixx_offer');location.reload()}
+// ---- Glassy Login (demo, local only — passwords are never stored) ----
+function toggleLogin(mode){
+  const d=document.getElementById('loginDiamond'); d.classList.remove('spin'); void d.offsetWidth; d.classList.add('spin');
+  document.getElementById('loginSignin').style.display = mode==='signup' ? 'none' : 'block';
+  document.getElementById('loginSignup').style.display = mode==='signup' ? 'block' : 'none';
+  document.getElementById('loginDone').style.display='none';
+}
+function setLoggedIn(name,email){
+  localStorage.setItem('heyyanixx_user', JSON.stringify({name,email}));
+  document.getElementById('loginSignin').style.display='none';
+  document.getElementById('loginSignup').style.display='none';
+  document.getElementById('loginDone').style.display='block';
+  document.getElementById('loginWelcome').textContent='Welcome back, '+name.split(' ')[0]+'!';
+  document.getElementById('loginUserLine').textContent=email;
+  const hb=document.getElementById('loginHeaderBtn'); if(hb) hb.textContent='👤 '+name.split(' ')[0];
+  const on=document.getElementById('o-name'); if(on && !on.value) on.value=name;
+}
+function doSignin(e){
+  e.preventDefault();
+  const email=document.getElementById('li-email').value.trim();
+  const saved=JSON.parse(localStorage.getItem('heyyanixx_user')||'null');
+  const name = saved && saved.email===email ? saved.name : email.split('@')[0];
+  setLoggedIn(name,email); toast('Welcome back! Signed in.');
+}
+function doSignup(e){
+  e.preventDefault();
+  const name=document.getElementById('su-name').value.trim();
+  const email=document.getElementById('su-email').value.trim();
+  const p=document.getElementById('su-pass').value, c=document.getElementById('su-confirm').value;
+  if(p!==c){ toast('Passwords do not match'); return; }
+  if(!document.getElementById('su-terms').checked){ toast('Please agree to the Terms & Privacy Policy'); return; }
+  setLoggedIn(name,email); toast('Account created! Welcome to HEYYANIXX.');
+}
+function doLogout(){
+  localStorage.removeItem('heyyanixx_user');
+  const hb=document.getElementById('loginHeaderBtn'); if(hb) hb.textContent='👤 Login';
+  toggleLogin('signin'); toast('Logged out.');
+}
+function forgotPass(){ toast('Password reset is demo here — email kranish7900@gmail.com for help.'); }
+function socialLogin(p){ toast(p+' sign-in is not connected in this demo — use email for now.'); }
+function restoreLogin(){
+  try{ const u=JSON.parse(localStorage.getItem('heyyanixx_user')||'null'); if(u) setLoggedIn(u.name,u.email); }catch(e){}
+}
+// Init
+document.getElementById('promptText').textContent=promptOfDay();
+restoreLogin();
+renderFilters(); renderWorks(); renderServices();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "android": {
+    "allowMixedContent": true
+  },
+  "appId": "com.heyyanixx.app",
+  "appName": "HEYYANIXX",
+  "backgroundColor": "#060608",
+  "ios": {
+    "contentInset": "always"
+  },
+  "server": {
+    "androidScheme": "https"
+  },
+  "webDir": "www"
+}
