@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-apk:
     runs-on: ubuntu-latest
@@ -60,3 +63,15 @@ jobs:
           name: heyyanixx-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish APK as a GitHub Release (public download link)
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk heyyanixx-app-debug.apk
+          gh release create "build-${{ github.run_number }}" heyyanixx-app-debug.apk \
+            --repo "${{ github.repository }}" \
+            --title "HEYYANIXX app — build ${{ github.run_number }}" \
+            --notes "Android APK (debug build). Download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once)." \
+            --latest
