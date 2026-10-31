@@ -229,7 +229,8 @@ body.hub-open #chatFab{display:none}
   <div class="tiles">
     <button class="tile big" onclick="openHub('games')"><span class="tic">🎮</span><span class="tt"><b>Games</b><small>HEYY Sled Rush + Arcade — gulel launch, combos, leaderboard</small></span><span class="tgo">Play →</span></button>
     <button class="tile" onclick="openHub('learn')"><span class="tic">📚</span><b>Learn Arcade</b><small>19 games · Coding, Commerce, CA, Video Editing</small></button>
-    <button class="tile" onclick="openHub('tools')"><span class="tic">🧰</span><b>ADCA Tools <span class="badge">NEW</span></b><small>Word, Sheets, Slides, PDF</small></button>
+    <button class="tile" onclick="openHub('tools')"><span class="tic">🧰</span><b>ADCA Tools</b><small>Word, Sheets, Slides, PDF</small></button>
+    <button class="tile" onclick="openHub('notes')"><span class="tic">📝</span><b>Notes AI <span class="badge">NEW</span></b><small>Topic → short notes, quiz, flashcards</small></button>
     <button class="tile" onclick="openHub('portfolio')"><span class="tic">👤</span><b>Portfolio</b><small>Full work, showreel, hire</small></button>
     <button class="tile soon" onclick="openHub('course')"><span class="tic">🎓</span><b>Course</b><small>APK Basics — coming soon</small></button>
   </div>
@@ -415,11 +416,12 @@ body.hub-open #chatFab{display:none}
     <button onclick="go('login')"><b>👤</b>Login</button>
   </div>
   <div class="universe" style="margin-top:12px">
+    <button class="uni" onclick="openHub('notes')"><span class="ic">📝</span><span><b>Notes AI</b><small>Short notes, quiz, flashcards</small></span><span class="go">→</span></button>
     <button class="uni" onclick="openHub('portfolio')"><span class="ic">👤</span><span><b>Portfolio</b></span><span class="go">→</span></button>
     <button class="uni" onclick="openHub('course')"><span class="ic">🎓</span><span><b>Course</b><small>APK Basics &amp; App Customization — coming soon</small></span><span class="go">→</span></button>
     <button class="uni" onclick="shareApp();toggleMore()"><span class="ic">↗</span><span><b>Share App</b></span><span class="go">→</span></button>
   </div>
-  <div class="appver">HEYYANIXX app · v2.1.0</div>
+  <div class="appver">HEYYANIXX app · v2.2.0</div>
 </div>
 
 <button id="chatFab" onclick="toggleChat()" aria-label="Chat with HEYYANIXX">💬</button>
@@ -696,7 +698,9 @@ const HUB={
   games:{icon:'🎮',title:'Games',url:'https://heyyanixx.sites.tab.bot/#play',offline:'offline/arcade/'},
   learn:{icon:'📚',title:'Learn Arcade',url:'https://heyyanixx-learn.sites.tab.bot/',offline:'offline/learn/'},
   tools:{icon:'🧰',title:'ADCA Tools',url:'https://heyyanixx-tools.sites.tab.bot/',check:true,soon:'ADCA Tools launching soon',soonText:'Word, Sheets, Slides, PDF tools aur Learning Center ban rahe hain. Live hote hi yahin khul jayega — app update ki zarurat nahi.'},
+  notes:{icon:'📝',title:'Notes AI',url:'https://heyyanixx-notes.sites.tab.bot/'},
   portfolio:{icon:'👤',title:'Portfolio',url:'https://heyyanixx.sites.tab.bot/'},
+  site:{icon:'🌐',title:'HEYYANIXX',url:null},
   course:{icon:'🎓',title:'Course',url:null,soon:'Course coming soon',soonText:'"APK Basics & App Customization" course ban raha hai — PDF + doubt solver. Launch hote hi yahin milega.'}
 };
 const hubFrames={}; let hubKey=null; const HUB_KEEP=3; let hubOrder=[];
@@ -763,8 +767,15 @@ window.hxOpenUrl=function(url){
   try{const u=new URL(url);const host=u.hostname;
     if(host==='heyyanixx-learn.sites.tab.bot')return openHub('learn',{url});
     if(host==='heyyanixx-tools.sites.tab.bot')return openHub('tools',{url});
+    if(host==='heyyanixx-notes.sites.tab.bot')return openHub('notes',{url});
     if(host==='heyyanixx.sites.tab.bot')return openHub(/^#play/.test(u.hash)?'games':'portfolio',{url});
     if(host==='heyyanixx-app.sites.tab.bot')return go('home');
+    if(/\.sites\.tab\.bot$/.test(host)){ // any other HEYYANIXX site (links page, tools…) stays inside the app too
+      const nm=host.split('.')[0].replace(/^heyyanixx-?/,'');
+      HUB.site.url=u.origin+'/';HUB.site.title=nm?('HEYYANIXX '+nm.charAt(0).toUpperCase()+nm.slice(1)):'HEYYANIXX';
+      if(hubFrames.site&&hubFrames.site.src&&new URL(hubFrames.site.src).hostname!==host){hubFrames.site.remove();delete hubFrames.site;hubOrder=hubOrder.filter(k=>k!=='site')}
+      return openHub('site',{url});
+    }
   }catch(e){}
   const u2=new URL(url);u2.searchParams.set('hxext','1');window.open(u2.toString(),'_blank');
 };

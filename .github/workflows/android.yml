@@ -56,12 +56,53 @@ jobs:
           grep -E "versionCode|versionName" android/app/build.gradle
           chmod +x android/gradlew
         env:
-          APP_VERSION_NAME: "2.1.0"
-          APP_VERSION_CODE: "210"
+          APP_VERSION_NAME: "2.2.0"
+          APP_VERSION_CODE: "220"
+
+      - name: Use the permanent HEYYANIXX signing key (from repo secrets)
+        env:
+          HX_KEYSTORE_BASE64: ${{ secrets.HX_KEYSTORE_BASE64 }}
+        run: |
+          # The keystore lives ONLY in GitHub Actions secrets (never in this repo).
+          # Same key every build => new versions install over the old app, no uninstall.
+          if [ -z "$HX_KEYSTORE_BASE64" ]; then
+            echo "::warning::HX_KEYSTORE_BASE64 secret not set - building with a throwaway debug key"
+            exit 0
+          fi
+          echo "$HX_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/heyyanixx-release.jks"
+          echo "HX_KEYSTORE_FILE=$RUNNER_TEMP/heyyanixx-release.jks" >> "$GITHUB_ENV"
+          cat >> android/app/build.gradle <<'GRADLE'
+
+          // HEYYANIXX: sign with the permanent key when the CI secrets are present
+          if (System.getenv("HX_KEYSTORE_FILE")) {
+              android {
+                  signingConfigs {
+                      heyyanixx {
+                          storeFile file(System.getenv("HX_KEYSTORE_FILE"))
+                          storePassword System.getenv("HX_KEYSTORE_PASSWORD")
+                          keyAlias System.getenv("HX_KEY_ALIAS")
+                          keyPassword System.getenv("HX_KEY_PASSWORD")
+                      }
+                  }
+                  buildTypes {
+                      debug { signingConfig signingConfigs.heyyanixx }
+                      release { signingConfig signingConfigs.heyyanixx }
+                  }
+              }
+          }
+          GRADLE
 
       - name: Build debug APK with Gradle
         working-directory: android
-        run: ./gradlew assembleDebug --stacktrace
+        env:
+          HX_KEYSTORE_PASSWORD: ${{ secrets.HX_KEYSTORE_PASSWORD }}
+          HX_KEY_ALIAS: ${{ secrets.HX_KEY_ALIAS }}
+          HX_KEY_PASSWORD: ${{ secrets.HX_KEY_PASSWORD }}
+        run: |
+          ./gradlew assembleDebug --stacktrace
+          # print the signing certificate so every build log shows it is the same key
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --print-certs app/build/outputs/apk/debug/app-debug.apk | grep -E "Signer #1 certificate (DN|SHA-256)" || true
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -78,6 +119,6 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk heyyanixx-app-debug.apk
           gh release create "build-${{ github.run_number }}" heyyanixx-app-debug.apk \
             --repo "${{ github.repository }}" \
-            --title "HEYYANIXX app v2.1.0 — build ${{ github.run_number }}" \
-            --notes "HEYYANIXX v2.1.0 — app hub: Games, Learn Arcade, ADCA Tools and Portfolio open live inside the app (offline copies of the games built in), new gold HX icon, splash and black + gold theme. Android APK (debug build): download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once). If Android says the app conflicts with an existing one, uninstall the old HEYYANIXX first." \
+            --title "HEYYANIXX app v2.2.0 — build ${{ github.run_number }}" \
+            --notes "HEYYANIXX v2.2.0 — new Notes AI tile in the hub (opens HEYYANIXX Notes AI inside the app), and the app is now signed with one permanent HEYYANIXX key: from v2.2.0 on, every update installs over the old app — no uninstall needed. Coming from v2.1 or older? Uninstall the old HEYYANIXX once, then install this. Android APK: download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once)." \
             --latest

@@ -178,3 +178,9 @@ The workflow removes Capacitor's default icon/splash files and copies `resources
 - Offline: if there is no internet (or the site does not load in 25 s), Games and Learn Arcade open the copies bundled in `www/offline/arcade` and `www/offline/learn`, with an OFFLINE badge. Tools and Portfolio show a branded "no internet" screen with Retry.
 - Android: `server.allowNavigation` = `*.sites.tab.bot`, `@capacitor/app` handles the back button (closes the hub / goes back a screen, exits from Home), and `resources/android/java/.../MainActivity.java` routes new-window links: HEYYANIXX sites open in the hub, everything else (Instagram, YouTube, mail) opens outside the app.
 - To refresh the offline copies after a website update: copy the site folder into `www/offline/learn` (or `games/arcade.js` + `arcade.css` into `www/offline/arcade/games`), update the file list in `www/sw.js`, push.
+
+## v2.2.0 — Notes AI tile + permanent signing key
+- **Notes AI:** new hub tile that opens HEYYANIXX Notes AI (https://heyyanixx-notes.sites.tab.bot/) live inside the app. Online-only: without internet it shows the same "Internet nahi mil raha" screen with Retry as Tools/Portfolio.
+- **In-app links:** links from any HEYYANIXX site to another `*.sites.tab.bot` page (Notes AI, the links page, etc.) open inside the app's hub viewer instead of leaving the app.
+- **Signing:** the workflow now signs every APK with one permanent HEYYANIXX key. The keystore and its passwords live ONLY in the repo's GitHub Actions secrets (`HX_KEYSTORE_BASE64`, `HX_KEYSTORE_PASSWORD`, `HX_KEY_ALIAS`, `HX_KEY_PASSWORD`) — never in this repo. From v2.2.0 on, new versions install over the old app without uninstalling. (Going from v2.1 or older to v2.2.0 needs one last uninstall, because those builds used throwaway keys.) If the secrets are missing (e.g. a fork), the build still works with a throwaway debug key.
+- **Version:** versionName 2.2.0 / versionCode 220.
