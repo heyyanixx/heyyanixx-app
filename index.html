@@ -80,11 +80,11 @@ nav button.active{color:var(--gold)}nav button b{font-size:20px;font-weight:400}
 <body>
 <div class="app">
 <header>
-  <div class="logo">HEYY<span>ANIXX</span></div>
+  <div class="logo" id="appLogo" onclick="secretTap()" style="cursor:default;user-select:none">HEYY<span>ANIXX</span></div>
   <div class="row" style="flex:0 0 auto;gap:6px">
-    <button class="iconbtn" onclick="enablePush()">🔔 Notify</button>
-    <button class="iconbtn" onclick="shareApp()">↗ Share</button>
-    <!-- Login hidden until a real backend exists: <button class="iconbtn" id="loginHeaderBtn" onclick="go('login')">👤 Login</button> -->
+    <button class="iconbtn" onclick="enablePush()" title="Notifications" aria-label="Notifications">🔔</button>
+    <button class="iconbtn" onclick="shareApp()" title="Share" aria-label="Share">↗</button>
+    <button class="iconbtn" id="loginHeaderBtn" onclick="go('login')">👤 Login</button>
   </div>
 </header>
 
@@ -291,11 +291,10 @@ nav button.active{color:var(--gold)}nav button b{font-size:20px;font-weight:400}
     <button class="btn ghost" onclick="go('contact');toggleMore()">Contact</button>
   </div><div class="row" style="margin-top:8px">
     <button class="btn ghost" onclick="go('faq');toggleMore()">FAQ</button>
-    <button class="btn ghost" onclick="go('admin');toggleMore()">🔒 Admin</button>
+    <button class="btn ghost" onclick="go('login');toggleMore()">👤 Login / Sign Up</button>
   </div><div class="row" style="margin-top:8px">
     <button class="btn ghost" onclick="shareApp();toggleMore()">↗ Share App</button>
     <button class="btn ghost" onclick="go('home');toggleMore()">⌂ Home</button>
-    <!-- Login hidden until a real backend exists: <button class="btn ghost" onclick="go('login');toggleMore()">👤 Login / Sign Up</button> -->
   </div>
 </div>
 
@@ -315,7 +314,8 @@ nav button.active{color:var(--gold)}nav button b{font-size:20px;font-weight:400}
 <div class="toast" id="toast"></div>
 <script>
 // ===== HEYYANIXX APP — CHANGE THESE BEFORE PUBLISHING =====
-const ADMIN_PASS = 'zKy3RgDJ';
+// Admin passcode is stored only as a SHA-256 hash (not readable). Admin opens by tapping the HEYYANIXX logo 7 times quickly.
+const ADMIN_HASH = '657b68895511621cc24b011d75527c7d6907a22308428b4cb3814cedd0b18687';
 const EMAIL = 'kranish7900@gmail.com';
 const IG_URL = 'https://www.instagram.com/heyyy.anixx_/';
 const YT_URL = 'https://www.youtube.com/@smart_anish69';
@@ -478,8 +478,11 @@ function promptOfDay(){
 }
 function newPrompt(){document.getElementById('promptText').textContent=PROMPTS[Math.floor(Math.random()*PROMPTS.length)]}
 function copyPrompt(){navigator.clipboard.writeText(document.getElementById('promptText').textContent).then(()=>toast('Prompt copy ho gaya!'))}
-function adminLogin(){
-  if(document.getElementById('adminPass').value===ADMIN_PASS){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';toast('Admin unlocked');}
+let _taps=0,_tapT=0;
+function secretTap(){const n=Date.now(); if(n-_tapT>2500)_taps=0; _tapT=n; if(++_taps>=7){_taps=0; go('admin');}}
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function adminLogin(){
+  if(await sha256(document.getElementById('adminPass').value)===ADMIN_HASH){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';toast('Admin unlocked');}
   else toast('Galat passcode');
 }
 function addWork(){
