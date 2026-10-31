@@ -693,8 +693,8 @@ renderFilters(); renderWorks(); renderServices();
 
 // ===== v2.1: HEYYANIXX Hub — live sites inside the app =====
 const HUB={
-  games:{icon:'🎮',title:'Games',url:'https://heyyanixx.sites.tab.bot/#play',offline:'offline/arcade/index.html'},
-  learn:{icon:'📚',title:'Learn Arcade',url:'https://heyyanixx-learn.sites.tab.bot/',offline:'offline/learn/index.html'},
+  games:{icon:'🎮',title:'Games',url:'https://heyyanixx.sites.tab.bot/#play',offline:'offline/arcade/'},
+  learn:{icon:'📚',title:'Learn Arcade',url:'https://heyyanixx-learn.sites.tab.bot/',offline:'offline/learn/'},
   tools:{icon:'🧰',title:'ADCA Tools',url:'https://heyyanixx-tools.sites.tab.bot/',check:true,soon:'ADCA Tools launching soon',soonText:'Word, Sheets, Slides, PDF tools aur Learning Center ban rahe hain. Live hote hi yahin khul jayega — app update ki zarurat nahi.'},
   portfolio:{icon:'👤',title:'Portfolio',url:'https://heyyanixx.sites.tab.bot/'},
   course:{icon:'🎓',title:'Course',url:null,soon:'Course coming soon',soonText:'"APK Basics & App Customization" course ban raha hai — PDF + doubt solver. Launch hote hi yahin milega.'}
@@ -738,7 +738,7 @@ function hubMakeFrame(key,src,mode,onFail){
 }
 function hubGoOffline(key){
   const s=HUB[key];if(hubKey!==key)return;
-  if(s.offline){hubMakeFrame(key,s.offline,'offline',()=>hubState('hubOffline'));toast('📴 Offline mode — phone me save copy chal raha hai')}
+  if(s.offline){hubMakeFrame(key,isNative()?s.offline+'index.html':s.offline,'offline',()=>hubState('hubOffline'));toast('📴 Offline mode — phone me save copy chal raha hai')}
   else{hubShowFrame(null);hubState('hubOffline');hubBadge()}
 }
 async function hubLoad(key,url,force){
