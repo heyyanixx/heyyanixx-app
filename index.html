@@ -159,6 +159,7 @@ nav button.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%
 .tile.big .tic{margin:0;width:56px;height:56px;font-size:30px}.tile.big .tt{display:flex;flex-direction:column;gap:3px;flex:1}.tile.big b{font-size:19px}
 .tile.big .tgo{background:var(--grad);color:#15120a;font-weight:800;border-radius:12px;padding:9px 12px;font-size:13px;white-space:nowrap}
 .tile.soon{opacity:.75;border-style:dashed}
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;min-height:80px}.tile.wide .tic{margin:0}.tile.wide .tt{display:flex;flex-direction:column;gap:3px;flex:1}
 .sheetgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sheetgrid button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:#eee;font-size:12.5px;font-weight:600}
 .sheetgrid button b{font-size:20px;font-weight:400}.sheetgrid button:active{border-color:var(--gold);background:rgba(227,182,90,.08)}
@@ -231,8 +232,10 @@ body.hub-open #chatFab{display:none}
     <button class="tile" onclick="openHub('learn')"><span class="tic">📚</span><b>Learn Arcade</b><small>19 games · Coding, Commerce, CA, Video Editing</small></button>
     <button class="tile" onclick="openHub('tools')"><span class="tic">🧰</span><b>ADCA Tools</b><small>Word, Sheets, Slides, PDF</small></button>
     <button class="tile" onclick="openHub('notes')"><span class="tic">📝</span><b>Notes AI <span class="badge">NEW</span></b><small>Topic → short notes, quiz, flashcards</small></button>
+    <button class="tile" onclick="openHub('links')"><span class="tic">🔗</span><b>Links</b><small>Saare socials, YouTube, Insta — ek jagah</small></button>
+    <button class="tile" onclick="openHub('payposter')"><span class="tic">💸</span><b>PayPoster <span class="badge">NEW</span></b><small>UPI QR poster + pay link maker</small></button>
     <button class="tile" onclick="openHub('portfolio')"><span class="tic">👤</span><b>Portfolio</b><small>Full work, showreel, hire</small></button>
-    <button class="tile soon" onclick="openHub('course')"><span class="tic">🎓</span><b>Course</b><small>APK Basics — coming soon</small></button>
+    <button class="tile soon wide" onclick="openHub('course')"><span class="tic">🎓</span><span class="tt"><b>Course</b><small>APK Basics — coming soon</small></span></button>
   </div>
   <div class="card"><h3>Why HEYYANIXX?</h3><p class="muted">Fast delivery, beat-perfect cuts, AI cinematic look, aur revisions ke saath full support. 7+ years gaming experience.</p><span class="chip">Reels</span><span class="chip">AI Cinematic</span><span class="chip">Thumbnails</span><span class="chip">Gaming</span></div>
 </section>
@@ -417,11 +420,13 @@ body.hub-open #chatFab{display:none}
   </div>
   <div class="universe" style="margin-top:12px">
     <button class="uni" onclick="openHub('notes')"><span class="ic">📝</span><span><b>Notes AI</b><small>Short notes, quiz, flashcards</small></span><span class="go">→</span></button>
+    <button class="uni" onclick="openHub('links')"><span class="ic">🔗</span><span><b>Links</b><small>Socials, YouTube, Insta — ek jagah</small></span><span class="go">→</span></button>
+    <button class="uni" onclick="openHub('payposter')"><span class="ic">💸</span><span><b>PayPoster</b><small>UPI QR poster + pay link</small></span><span class="go">→</span></button>
     <button class="uni" onclick="openHub('portfolio')"><span class="ic">👤</span><span><b>Portfolio</b></span><span class="go">→</span></button>
     <button class="uni" onclick="openHub('course')"><span class="ic">🎓</span><span><b>Course</b><small>APK Basics &amp; App Customization — coming soon</small></span><span class="go">→</span></button>
     <button class="uni" onclick="shareApp();toggleMore()"><span class="ic">↗</span><span><b>Share App</b></span><span class="go">→</span></button>
   </div>
-  <div class="appver">HEYYANIXX app · v2.2.0</div>
+  <div class="appver">HEYYANIXX app · v2.3.0</div>
 </div>
 
 <button id="chatFab" onclick="toggleChat()" aria-label="Chat with HEYYANIXX">💬</button>
@@ -699,6 +704,8 @@ const HUB={
   learn:{icon:'📚',title:'Learn Arcade',url:'https://heyyanixx-learn.sites.tab.bot/',offline:'offline/learn/'},
   tools:{icon:'🧰',title:'ADCA Tools',url:'https://heyyanixx-tools.sites.tab.bot/',check:true,soon:'ADCA Tools launching soon',soonText:'Word, Sheets, Slides, PDF tools aur Learning Center ban rahe hain. Live hote hi yahin khul jayega — app update ki zarurat nahi.'},
   notes:{icon:'📝',title:'Notes AI',url:'https://heyyanixx-notes.sites.tab.bot/'},
+  links:{icon:'🔗',title:'Links',url:'https://heyyanixx-links.sites.tab.bot/'},
+  payposter:{icon:'💸',title:'PayPoster',url:'https://heyyanixx-payposter.sites.tab.bot/'},
   portfolio:{icon:'👤',title:'Portfolio',url:'https://heyyanixx.sites.tab.bot/'},
   site:{icon:'🌐',title:'HEYYANIXX',url:null},
   course:{icon:'🎓',title:'Course',url:null,soon:'Course coming soon',soonText:'"APK Basics & App Customization" course ban raha hai — PDF + doubt solver. Launch hote hi yahin milega.'}
@@ -768,6 +775,8 @@ window.hxOpenUrl=function(url){
     if(host==='heyyanixx-learn.sites.tab.bot')return openHub('learn',{url});
     if(host==='heyyanixx-tools.sites.tab.bot')return openHub('tools',{url});
     if(host==='heyyanixx-notes.sites.tab.bot')return openHub('notes',{url});
+    if(host==='heyyanixx-links.sites.tab.bot')return openHub('links',{url});
+    if(host==='heyyanixx-payposter.sites.tab.bot')return openHub('payposter',{url});
     if(host==='heyyanixx.sites.tab.bot')return openHub(/^#play/.test(u.hash)?'games':'portfolio',{url});
     if(host==='heyyanixx-app.sites.tab.bot')return go('home');
     if(/\.sites\.tab\.bot$/.test(host)){ // any other HEYYANIXX site (links page, tools…) stays inside the app too

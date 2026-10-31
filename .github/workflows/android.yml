@@ -56,8 +56,8 @@ jobs:
           grep -E "versionCode|versionName" android/app/build.gradle
           chmod +x android/gradlew
         env:
-          APP_VERSION_NAME: "2.2.0"
-          APP_VERSION_CODE: "220"
+          APP_VERSION_NAME: "2.3.0"
+          APP_VERSION_CODE: "230"
 
       - name: Use the permanent HEYYANIXX signing key (from repo secrets)
         env:
@@ -119,6 +119,6 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk heyyanixx-app-debug.apk
           gh release create "build-${{ github.run_number }}" heyyanixx-app-debug.apk \
             --repo "${{ github.repository }}" \
-            --title "HEYYANIXX app v2.2.0 — build ${{ github.run_number }}" \
-            --notes "HEYYANIXX v2.2.0 — new Notes AI tile in the hub (opens HEYYANIXX Notes AI inside the app), and the app is now signed with one permanent HEYYANIXX key: from v2.2.0 on, every update installs over the old app — no uninstall needed. Coming from v2.1 or older? Uninstall the old HEYYANIXX once, then install this. Android APK: download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once)." \
+            --title "HEYYANIXX app v2.3.0 — build ${{ github.run_number }}" \
+            --notes "HEYYANIXX v2.3.0 — two new hub tiles: 🔗 Links (all HEYYANIXX socials in one place) and 💸 PayPoster (UPI QR poster + pay link maker), both open inside the app. Signed with the same permanent HEYYANIXX key as v2.2.0, so it installs straight over v2.2 — no uninstall needed. Coming from v2.1 or older? Uninstall the old HEYYANIXX once, then install this. Android APK: download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once)." \
             --latest

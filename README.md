@@ -179,6 +179,12 @@ The workflow removes Capacitor's default icon/splash files and copies `resources
 - Android: `server.allowNavigation` = `*.sites.tab.bot`, `@capacitor/app` handles the back button (closes the hub / goes back a screen, exits from Home), and `resources/android/java/.../MainActivity.java` routes new-window links: HEYYANIXX sites open in the hub, everything else (Instagram, YouTube, mail) opens outside the app.
 - To refresh the offline copies after a website update: copy the site folder into `www/offline/learn` (or `games/arcade.js` + `arcade.css` into `www/offline/arcade/games`), update the file list in `www/sw.js`, push.
 
+## v2.3.0 — Links + PayPoster tiles
+
+- **Hub:** two new tiles — 🔗 **Links** (https://heyyanixx-links.sites.tab.bot/) and 💸 **PayPoster** (https://heyyanixx-payposter.sites.tab.bot/). Both are online-only: they open inside the app's hub viewer, and without internet show the same "Internet nahi mil raha" screen as Tools/Notes. Links from other HEYYANIXX sites to these two pages also open in their own tiles. Notes AI, Games (offline), Learn (offline), Tools, Portfolio and Course are unchanged.
+- **Signing:** same permanent key as v2.2.0, so v2.3.0 installs straight over v2.2.0.
+- **Version:** versionName 2.3.0 / versionCode 230. PWA cache `heyyanixx-v10`.
+
 ## v2.2.0 — Notes AI tile + permanent signing key
 - **Notes AI:** new hub tile that opens HEYYANIXX Notes AI (https://heyyanixx-notes.sites.tab.bot/) live inside the app. Online-only: without internet it shows the same "Internet nahi mil raha" screen with Retry as Tools/Portfolio.
 - **In-app links:** links from any HEYYANIXX site to another `*.sites.tab.bot` page (Notes AI, the links page, etc.) open inside the app's hub viewer instead of leaving the app.
