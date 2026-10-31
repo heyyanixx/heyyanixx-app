@@ -161,3 +161,13 @@ Good luck, Anish — chalo, app ko viral karte hain! 🔥
 - Rate button replaced with Share app (no Play listing yet).
 - Service worker v3 precaches the app shell + posters.
 - APK build applies the HEYYANIXX icon + black splash (resources/android).
+
+
+## v2.0.0 — HEYYANIXX brand refresh
+- **Launcher icon:** original gold "HX" monogram (an H whose crossbar is a play button, plus a spark) on matte black. Android adaptive icon with foreground, background and monochrome (themed icon) layers for every density, in `resources/android/res/mipmap-*`. Play Store icon: `resources/play/play-icon-512.png`.
+- **Splash:** Android 12+ system splash (gold mark on #060608) and a centered logo splash for older phones (`drawable/splash.xml` + `splash_logo.png`), so it never stretches.
+- **Theme:** black status bar and navigation bar, gold accent (`values/styles.xml`, `values/colors.xml`).
+- **Version:** versionName 2.0.0 / versionCode 200, set in the workflow (`APP_VERSION_NAME`, `APP_VERSION_CODE`).
+- **In-app UI:** Outfit font (SIL OFL, bundled in `www/fonts`), new header logo, gold buttons, branded loading screen, image loading shimmer, highlighted bottom nav, and a "HEYYANIXX Universe" section with links to the Portfolio, Learn Arcade and ADCA Tools sites.
+
+The workflow removes Capacitor's default icon/splash files and copies `resources/android/res` over `android/app/src/main/res` after `cap sync`.

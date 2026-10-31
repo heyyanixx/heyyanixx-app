@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="18 18 72 72"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0" stop-color="#fbe9b4"/><stop offset=".45" stop-color="#e3b65a"/><stop offset="1" stop-color="#a5741f"/></linearGradient>
+ <linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d8" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="rg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#2b210d"/><stop offset=".5" stop-color="#0f0d0b"/><stop offset="1" stop-color="#050506"/></radialGradient>
+<linearGradient id="streak" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3b65a" stop-opacity="0"/><stop offset=".5" stop-color="#e3b65a" stop-opacity=".06"/><stop offset="1" stop-color="#e3b65a" stop-opacity="0"/></linearGradient><clipPath id="c"><rect x="18" y="18" width="72" height="72" rx="16"/></clipPath></defs>
+<g clip-path="url(#c)"><rect width="108" height="108" fill="url(#rg)"/><polygon points="0,78 78,0 96,0 0,96" fill="url(#streak)"/><g transform="translate(54 55) scale(0.84) translate(-57 -54)"><g fill="url(#g)">
+ <polygon points="34,37 44,33 44,75 34,75"/>
+ <polygon points="64,33 74,33 74,71 64,75"/>
+ <polygon points="46.5,42.5 46.5,65.5 64.2,54"/>
+</g><path d="M79.5 25.3 Q80.864 30.136 85.7 31.5 Q80.864 32.864 79.5 37.7 Q78.136 32.864 73.3 31.5 Q78.136 30.136 79.5 25.3Z" fill="#fbe9b4"/></g></g></svg>

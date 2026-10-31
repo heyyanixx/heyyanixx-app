@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HEYYANIXX brand palette -->
+<resources>
+    <color name="hx_black">#FF060608</color>
+    <color name="hx_surface">#FF121216</color>
+    <color name="hx_gold">#FFE3B65A</color>
+    <color name="hx_gold_light">#FFF5D48A</color>
+    <color name="colorPrimary">#FF060608</color>
+    <color name="colorPrimaryDark">#FF060608</color>
+    <color name="colorAccent">#FFE3B65A</color>
+    <color name="ic_launcher_background">#FF060608</color>
+</resources>

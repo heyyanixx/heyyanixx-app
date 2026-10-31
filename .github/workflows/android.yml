@@ -39,19 +39,23 @@ jobs:
           fi
           npx cap sync android
 
-      - name: Apply HEYYANIXX icon + splash
+      - name: Apply HEYYANIXX brand (adaptive icon, splash, theme, version)
         run: |
           RES=android/app/src/main/res
-          rm -rf $RES/mipmap-anydpi-v26
-          for d in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
-            mkdir -p $RES/mipmap-$d
-            cp resources/android/ic_launcher-$d.png $RES/mipmap-$d/ic_launcher.png
-            cp resources/android/ic_launcher-$d.png $RES/mipmap-$d/ic_launcher_round.png
-          done
-          find $RES -name splash.png | while read f; do
-            case "$f" in *land*) cp resources/android/splash-land.png "$f";; *) cp resources/android/splash-port.png "$f";; esac
-          done
+          # remove the Capacitor template's default icon + splash files
+          rm -rf $RES/mipmap-anydpi-v26 $RES/drawable-v24/ic_launcher_foreground.xml \
+                 $RES/drawable/ic_launcher_background.xml $RES/values/ic_launcher_background.xml
+          find $RES -name 'splash.png' -delete
+          find $RES -type d -empty -delete
+          # copy the HEYYANIXX resources (resources/android/res) on top
+          cp -r resources/android/res/. $RES/
+          # app version shown in Android settings
+          sed -i -E "s/versionCode [0-9]+/versionCode ${APP_VERSION_CODE}/; s/versionName \"[^\"]*\"/versionName \"${APP_VERSION_NAME}\"/" android/app/build.gradle
+          grep -E "versionCode|versionName" android/app/build.gradle
           chmod +x android/gradlew
+        env:
+          APP_VERSION_NAME: "2.0.0"
+          APP_VERSION_CODE: "200"
 
       - name: Build debug APK with Gradle
         working-directory: android
@@ -72,6 +76,6 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk heyyanixx-app-debug.apk
           gh release create "build-${{ github.run_number }}" heyyanixx-app-debug.apk \
             --repo "${{ github.repository }}" \
-            --title "HEYYANIXX app — build ${{ github.run_number }}" \
-            --notes "Android APK (debug build). Download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once)." \
+            --title "HEYYANIXX app v2.0.0 — build ${{ github.run_number }}" \
+            --notes "HEYYANIXX v2.0.0 — new gold HX icon, splash screen and premium black + gold theme. Android APK (debug build): download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once). If Android says the app conflicts with an existing one, uninstall the old HEYYANIXX first." \
             --latest

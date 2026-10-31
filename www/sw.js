@@ -1,6 +1,6 @@
 /* HEYYANIXX PWA service worker — app shell + local posters precached, works offline */
-const CACHE = 'heyyanixx-v4';
-const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png',
+const CACHE = 'heyyanixx-v5';
+const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './favicon.svg', './fonts/outfit.woff2',
   './assets/ad-v1.jpg',
   './assets/ad-v2.jpg',
   './assets/ai-bhool.jpg',
