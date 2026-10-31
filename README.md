@@ -171,3 +171,10 @@ Good luck, Anish — chalo, app ko viral karte hain! 🔥
 - **In-app UI:** Outfit font (SIL OFL, bundled in `www/fonts`), new header logo, gold buttons, branded loading screen, image loading shimmer, highlighted bottom nav, and a "HEYYANIXX Universe" section with links to the Portfolio, Learn Arcade and ADCA Tools sites.
 
 The workflow removes Capacitor's default icon/splash files and copies `resources/android/res` over `android/app/src/main/res` after `cap sync`.
+
+## v2.1.0 — HEYYANIXX Hub (live sites inside the app + offline games)
+- Bottom nav: Home · Games · Learn · Tools · More. Home has big tiles for Games, Learn Arcade, ADCA Tools, Portfolio and Course (coming soon).
+- Each tile opens the LIVE website inside the app (HEYYANIXX header with back, reload and open-in-browser), so every website update shows up in the app without a new APK.
+- Offline: if there is no internet (or the site does not load in 25 s), Games and Learn Arcade open the copies bundled in `www/offline/arcade` and `www/offline/learn`, with an OFFLINE badge. Tools and Portfolio show a branded "no internet" screen with Retry.
+- Android: `server.allowNavigation` = `*.sites.tab.bot`, `@capacitor/app` handles the back button (closes the hub / goes back a screen, exits from Home), and `resources/android/java/.../MainActivity.java` routes new-window links: HEYYANIXX sites open in the hub, everything else (Instagram, YouTube, mail) opens outside the app.
+- To refresh the offline copies after a website update: copy the site folder into `www/offline/learn` (or `games/arcade.js` + `arcade.css` into `www/offline/arcade/games`), update the file list in `www/sw.js`, push.

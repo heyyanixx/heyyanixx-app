@@ -148,6 +148,33 @@ nav button.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%
 #boot .ld:after{content:"";position:absolute;inset:0;width:40%;background:var(--grad);border-radius:3px;animation:bootBar 1.1s var(--ease) infinite}
 @keyframes bootPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 @keyframes bootBar{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+
+/* ===== v2.1 hub ===== */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;color:#fff;min-height:118px;padding:14px;border-radius:20px;border:1px solid var(--goldline);background:radial-gradient(120% 90% at 0% 0%,rgba(227,182,90,.16),transparent 55%),linear-gradient(180deg,#15130e,#0b0b0d);overflow:hidden;transition:transform .15s var(--ease),border-color .2s}
+.tile:active{transform:scale(.97);border-color:var(--gold)}
+.tile .tic{font-size:26px;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(0,0,0,.35);border:1px solid var(--goldline);margin-bottom:6px}
+.tile b{font-size:16px;letter-spacing:.2px}.tile small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.tile.big{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px;min-height:96px;background:radial-gradient(120% 120% at 100% 0%,rgba(227,182,90,.30),transparent 55%),linear-gradient(135deg,#1f180a,#0b0b0d 70%)}
+.tile.big .tic{margin:0;width:56px;height:56px;font-size:30px}.tile.big .tt{display:flex;flex-direction:column;gap:3px;flex:1}.tile.big b{font-size:19px}
+.tile.big .tgo{background:var(--grad);color:#15120a;font-weight:800;border-radius:12px;padding:9px 12px;font-size:13px;white-space:nowrap}
+.tile.soon{opacity:.75;border-style:dashed}
+.sheetgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sheetgrid button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:#eee;font-size:12.5px;font-weight:600}
+.sheetgrid button b{font-size:20px;font-weight:400}.sheetgrid button:active{border-color:var(--gold);background:rgba(227,182,90,.08)}
+#hub{position:fixed;left:50%;transform:translateX(-50%);top:0;bottom:calc(64px + env(safe-area-inset-bottom));width:100%;max-width:520px;z-index:28;background:var(--bg);display:none;flex-direction:column}
+#hub.open{display:flex;animation:fade .2s ease}
+body.hub-open #chatFab{display:none}
+.hubbar{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:rgba(6,6,8,.92);border-bottom:1px solid var(--goldline)}
+.hubtitle{flex:1;display:flex;align-items:center;gap:8px;font-size:16px;letter-spacing:.4px;min-width:0}.hubtitle b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hubprog{height:2px;background:transparent;overflow:hidden;position:relative}
+#hub.busy .hubprog i{position:absolute;inset:0;width:35%;background:var(--grad);animation:bootBar 1s var(--ease) infinite}
+#hubFrames{flex:1;position:relative;background:#060608}
+.hubframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:none;background:#060608}.hubframe.on{display:block}
+.hubstate{position:absolute;left:0;right:0;top:64px;bottom:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:28px;text-align:center;background:radial-gradient(circle at 50% 40%,#1c160a,#060608 65%)}
+.hubstate.on{display:flex}.hubstate .big{font-size:54px}.hubstate h3{font-size:22px;margin:4px 0}.hubstate .btn{width:100%;max-width:300px}
+.offpill{font-size:10px;font-weight:800;letter-spacing:1.2px;padding:3px 8px;border-radius:999px;background:rgba(227,182,90,.14);border:1px solid var(--gold);color:var(--gold2)}
+.spin3{width:46px;height:46px;border-radius:50%;border:3px solid rgba(227,182,90,.18);border-top-color:var(--gold);animation:spinDiamond .8s linear infinite}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 </style>
 </head>
@@ -197,12 +224,14 @@ nav button.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%
     <button class="btn ghost" onclick="go('gaming')">Free Fire MAX</button>
   </div>
 
-  <h2>HEYYANIXX Universe</h2>
-  <p class="muted" style="margin-top:4px">Meri saari websites — ek tap pe.</p>
-  <div class="universe">
-    <button class="uni" onclick="openSite('https://heyyanixx.sites.tab.bot/')"><span class="ic">🌐</span><span><b>Portfolio &amp; Arcade</b><small>Full work, showreel aur HEYY games</small></span><span class="go">→</span></button>
-    <button class="uni" onclick="openSite('https://heyyanixx-learn.sites.tab.bot/')"><span class="ic">🎓</span><span><b>Learn Arcade</b><small>Khel khel me padhai — Commerce, CA, Sarkari exam games</small></span><span class="go">→</span></button>
-    <button class="uni" onclick="openSite('https://heyyanixx-tools.sites.tab.bot/')"><span class="ic">🧰</span><span><b>ADCA Tools<span class="badge">NEW</span></b><small>Word, Sheets, Slides, PDF tools — sab browser me</small></span><span class="go">→</span></button>
+  <h2>HEYYANIXX Hub</h2>
+  <p class="muted" style="margin-top:4px">Meri saari websites app ke andar — har update yahan apne aap dikhega.</p>
+  <div class="tiles">
+    <button class="tile big" onclick="openHub('games')"><span class="tic">🎮</span><span class="tt"><b>Games</b><small>HEYY Sled Rush + Arcade — gulel launch, combos, leaderboard</small></span><span class="tgo">Play →</span></button>
+    <button class="tile" onclick="openHub('learn')"><span class="tic">📚</span><b>Learn Arcade</b><small>19 games · Coding, Commerce, CA, Video Editing</small></button>
+    <button class="tile" onclick="openHub('tools')"><span class="tic">🧰</span><b>ADCA Tools <span class="badge">NEW</span></b><small>Word, Sheets, Slides, PDF</small></button>
+    <button class="tile" onclick="openHub('portfolio')"><span class="tic">👤</span><b>Portfolio</b><small>Full work, showreel, hire</small></button>
+    <button class="tile soon" onclick="openHub('course')"><span class="tic">🎓</span><b>Course</b><small>APK Basics — coming soon</small></button>
   </div>
   <div class="card"><h3>Why HEYYANIXX?</h3><p class="muted">Fast delivery, beat-perfect cuts, AI cinematic look, aur revisions ke saath full support. 7+ years gaming experience.</p><span class="chip">Reels</span><span class="chip">AI Cinematic</span><span class="chip">Thumbnails</span><span class="chip">Gaming</span></div>
 </section>
@@ -366,33 +395,31 @@ nav button.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%
 </div>
 
 <nav>
-  <button class="active" onclick="go('home',this)"> <b>⌂</b>Home</button>
-  <button onclick="go('work',this)"> <b>▦</b>Work</button>
-  <button onclick="go('services',this)"> <b>₹</b>Services</button>
-  <button onclick="go('gaming',this)"> <b>🎮</b>Gaming</button>
-  <button onclick="toggleMore(this)"> <b>☰</b>More</button>
+  <button class="active" data-tab="home" onclick="go('home',this)"> <b>⌂</b>Home</button>
+  <button data-tab="games" onclick="openHub('games')"> <b>🎮</b>Games</button>
+  <button data-tab="learn" onclick="openHub('learn')"> <b>📚</b>Learn</button>
+  <button data-tab="tools" onclick="openHub('tools')"> <b>🧰</b>Tools</button>
+  <button data-tab="more" onclick="toggleMore(this)"> <b>☰</b>More</button>
 </nav>
 
 <div id="moreSheet">
-  <div class="row">
-    <button class="btn ghost" onclick="go('order');toggleMore()">Order / Hire</button>
-    <button class="btn ghost" onclick="go('ailab');toggleMore()">AI Lab</button>
-  </div><div class="row" style="margin-top:8px">
-    <button class="btn ghost" onclick="go('about');toggleMore()">About</button>
-    <button class="btn ghost" onclick="go('contact');toggleMore()">Contact</button>
-  </div><div class="row" style="margin-top:8px">
-    <button class="btn ghost" onclick="go('faq');toggleMore()">FAQ</button>
-    <button class="btn ghost" onclick="go('login');toggleMore()">👤 Login / Sign Up</button>
-  </div><div class="row" style="margin-top:8px">
-    <button class="btn ghost" onclick="shareApp();toggleMore()">↗ Share App</button>
-    <button class="btn ghost" onclick="go('home');toggleMore()">⌂ Home</button>
+  <div class="sheetgrid">
+    <button onclick="go('work')"><b>🎬</b>Work</button>
+    <button onclick="go('services')"><b>₹</b>Services</button>
+    <button onclick="go('order')"><b>⚡</b>Hire Me</button>
+    <button onclick="go('gaming')"><b>🔥</b>Free Fire</button>
+    <button onclick="go('ailab')"><b>🧪</b>AI Lab</button>
+    <button onclick="go('about')"><b>🙋</b>About</button>
+    <button onclick="go('contact')"><b>✉️</b>Contact</button>
+    <button onclick="go('faq')"><b>❓</b>FAQ</button>
+    <button onclick="go('login')"><b>👤</b>Login</button>
   </div>
   <div class="universe" style="margin-top:12px">
-    <button class="uni" onclick="openSite('https://heyyanixx.sites.tab.bot/')"><span class="ic">🌐</span><span><b>Portfolio</b></span><span class="go">→</span></button>
-    <button class="uni" onclick="openSite('https://heyyanixx-learn.sites.tab.bot/')"><span class="ic">🎓</span><span><b>Learn Arcade</b></span><span class="go">→</span></button>
-    <button class="uni" onclick="openSite('https://heyyanixx-tools.sites.tab.bot/')"><span class="ic">🧰</span><span><b>ADCA Tools<span class="badge">NEW</span></b></span><span class="go">→</span></button>
+    <button class="uni" onclick="openHub('portfolio')"><span class="ic">👤</span><span><b>Portfolio</b></span><span class="go">→</span></button>
+    <button class="uni" onclick="openHub('course')"><span class="ic">🎓</span><span><b>Course</b><small>APK Basics &amp; App Customization — coming soon</small></span><span class="go">→</span></button>
+    <button class="uni" onclick="shareApp();toggleMore()"><span class="ic">↗</span><span><b>Share App</b></span><span class="go">→</span></button>
   </div>
-  <div class="appver">HEYYANIXX app · v2.0.0</div>
+  <div class="appver">HEYYANIXX app · v2.1.0</div>
 </div>
 
 <button id="chatFab" onclick="toggleChat()" aria-label="Chat with HEYYANIXX">💬</button>
@@ -407,6 +434,19 @@ nav button.active:after{content:"";position:absolute;top:-9px;left:30%;right:30%
   <div style="padding:12px;display:flex;justify-content:space-between;align-items:center"><b id="playerTitle"></b><button class="btn ghost" onclick="closePlayer()">✕ Close</button></div>
   <video id="playerVideo" controls playsinline></video>
   <img id="playerImg" style="display:none;flex:1;object-fit:contain">
+</div>
+<div id="hub" aria-hidden="true">
+  <div class="hubbar">
+    <button class="iconbtn" onclick="hubBack()" aria-label="Back">←</button>
+    <div class="hubtitle"><span id="hubIcon">🎮</span><b id="hubTitle">Games</b><span id="hubOff" class="offpill" hidden>OFFLINE</span></div>
+    <button class="iconbtn" onclick="hubReload()" aria-label="Reload">⟳</button>
+    <button class="iconbtn" onclick="hubExternal()" aria-label="Open in browser">↗</button>
+  </div>
+  <div class="hubprog"><i></i></div>
+  <div id="hubFrames"></div>
+  <div class="hubstate" id="hubLoading"><div class="spin3"></div><b>Loading…</b><span class="small" id="hubLoadingSub"></span></div>
+  <div class="hubstate" id="hubOffline"><div class="big">📡</div><h3>Internet nahi mil raha</h3><p class="muted">Ye section live website se chalta hai. Net on karo aur dobara try karo.</p><button class="btn" onclick="hubRetry()">⟳ Retry</button><button class="btn ghost" onclick="openHub('games')">🎮 Offline games khelo</button><button class="btn ghost" onclick="go('work')">Mera Work dekho</button></div>
+  <div class="hubstate" id="hubSoon"><div class="big">🚀</div><h3 id="hubSoonTitle">Launching soon</h3><p class="muted" id="hubSoonText">Ye section abhi ban raha hai. Ready hote hi yahin khul jayega — app update ki zarurat nahi.</p><button class="btn" onclick="hubRetry()">⟳ Check again</button><button class="btn ghost" onclick="openHub('games')">Tab tak Games khelo 🎮</button></div>
 </div>
 <div class="toast" id="toast"></div>
 <script>
@@ -465,15 +505,19 @@ let offerText = localStorage.getItem('heyyanixx_offer') || '🔥 Offer: Use code
 let filter = 'All';
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
-function go(screen,btn){
+let curScreen='home';
+function setTab(tab){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab))}
+function go(screen,btn,fromPop){
+  hubHide();
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   const el=document.getElementById('s-'+screen); if(el) el.classList.add('active');
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  if(!btn) btn=[...document.querySelectorAll('nav button')].find(b=>(b.getAttribute('onclick')||'').includes("'"+screen+"'"));
-  if(btn) btn.classList.add('active');
+  setTab(screen==='home'?'home':'more');
   document.getElementById('moreSheet').classList.remove('open');
   window.scrollTo({top:0,behavior:'smooth'});
+  if(!fromPop && (screen!==curScreen || (history.state&&history.state.v))) history.pushState({s:screen},'');
+  curScreen=screen;
 }
+
 function toggleMore(){document.getElementById('moreSheet').classList.toggle('open')}
 function renderFilters(){
   const cats=['All','Video Edits','AI Cinematic','Thumbnails','Photo Edits','Gaming'];
@@ -646,8 +690,102 @@ document.getElementById('promptText').textContent=promptOfDay();
 restoreLogin();
 renderFilters(); renderWorks(); renderServices();
 
+
+// ===== v2.1: HEYYANIXX Hub — live sites inside the app =====
+const HUB={
+  games:{icon:'🎮',title:'Games',url:'https://heyyanixx.sites.tab.bot/#play',offline:'offline/arcade/index.html'},
+  learn:{icon:'📚',title:'Learn Arcade',url:'https://heyyanixx-learn.sites.tab.bot/',offline:'offline/learn/index.html'},
+  tools:{icon:'🧰',title:'ADCA Tools',url:'https://heyyanixx-tools.sites.tab.bot/',check:true,soon:'ADCA Tools launching soon',soonText:'Word, Sheets, Slides, PDF tools aur Learning Center ban rahe hain. Live hote hi yahin khul jayega — app update ki zarurat nahi.'},
+  portfolio:{icon:'👤',title:'Portfolio',url:'https://heyyanixx.sites.tab.bot/'},
+  course:{icon:'🎓',title:'Course',url:null,soon:'Course coming soon',soonText:'"APK Basics & App Customization" course ban raha hai — PDF + doubt solver. Launch hote hi yahin milega.'}
+};
+const hubFrames={}; let hubKey=null; const HUB_KEEP=3; let hubOrder=[];
+const isNative=()=>!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+const $h=id=>document.getElementById(id);
+function hubState(which){['hubLoading','hubOffline','hubSoon'].forEach(i=>$h(i).classList.toggle('on',i===which));$h('hub').classList.toggle('busy',which==='hubLoading')}
+function hubShowFrame(key){Object.entries(hubFrames).forEach(([k,f])=>f.classList.toggle('on',k===key))}
+function hubHide(){const h=$h('hub');if(h.classList.contains('open')){h.classList.remove('open');h.setAttribute('aria-hidden','true');document.body.classList.remove('hub-open')}hubKey=null}
+async function reachable(url,ms){ // network probe (opaque ok = online)
+  const c=new AbortController();const t=setTimeout(()=>c.abort(),ms||8000);
+  try{await fetch(url,{mode:'no-cors',cache:'no-store',signal:c.signal});return true}catch(e){return false}finally{clearTimeout(t)}
+}
+async function siteStatus(url){ // real HTTP status inside the Android app (native request, no CORS); null on the web
+  try{const H=window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.CapacitorHttp;if(!isNative()||!H)return null;
+    const r=await H.request({url,method:'GET',connectTimeout:8000,readTimeout:8000});return r.status}catch(e){return null}
+}
+function openHub(key,opts){
+  opts=opts||{};const s=HUB[key];if(!s)return;
+  document.getElementById('moreSheet').classList.remove('open');
+  hubKey=key;$h('hubIcon').textContent=s.icon;$h('hubTitle').textContent=s.title;
+  const h=$h('hub');h.classList.add('open');h.setAttribute('aria-hidden','false');document.body.classList.add('hub-open');
+  setTab(['games','learn','tools'].includes(key)?key:'more');
+  if(!opts.fromPop){ if(history.state&&history.state.v) history.replaceState({v:key},''); else history.pushState({v:key},''); }
+  hubLoad(key,opts.url);
+}
+function hubBadge(){const f=hubKey&&hubFrames[hubKey];$h('hubOff').hidden=!(f&&f.dataset.mode==='offline'&&f.classList.contains('on'))}
+function hubMakeFrame(key,src,mode,onFail){
+  const s=HUB[key];const f=document.createElement('iframe');f.className='hubframe';f.title=s.title;f.dataset.mode=mode;
+  f.setAttribute('allow','autoplay; fullscreen; clipboard-write; web-share; vibrate; gamepad');
+  f.setAttribute('allowfullscreen','');f.referrerPolicy='strict-origin-when-cross-origin';
+  const timer=setTimeout(()=>{if(!f.dataset.ok&&hubKey===key&&hubFrames[key]===f)onFail()},mode==='live'?25000:10000);
+  f.addEventListener('load',()=>{clearTimeout(timer);if(f.src==='about:blank')return;f.dataset.ok=1;if(hubKey===key&&hubFrames[key]===f){hubShowFrame(key);hubState(null);hubBadge()}});
+  f.src=src;
+  if(hubFrames[key])hubFrames[key].remove();
+  $h('hubFrames').appendChild(f);hubFrames[key]=f;
+  hubOrder=hubOrder.filter(k=>k!==key);hubOrder.push(key);
+  while(hubOrder.length>HUB_KEEP){const old=hubOrder.shift();if(old!==key&&hubFrames[old]){hubFrames[old].remove();delete hubFrames[old]}}
+  return f;
+}
+function hubGoOffline(key){
+  const s=HUB[key];if(hubKey!==key)return;
+  if(s.offline){hubMakeFrame(key,s.offline,'offline',()=>hubState('hubOffline'));toast('📴 Offline mode — phone me save copy chal raha hai')}
+  else{hubShowFrame(null);hubState('hubOffline');hubBadge()}
+}
+async function hubLoad(key,url,force){
+  const s=HUB[key];
+  if(!s.url){hubShowFrame(null);$h('hubSoonTitle').textContent=s.soon;$h('hubSoonText').textContent=s.soonText;hubState('hubSoon');hubBadge();return}
+  let f=hubFrames[key];
+  const online=navigator.onLine!==false;
+  if(f&&f.dataset.ok&&!force&&!url&&!(f.dataset.mode==='offline'&&online)){hubShowFrame(key);hubState(null);hubBadge();return}
+  hubShowFrame(null);hubBadge();$h('hubLoadingSub').textContent=s.title+' khul raha hai';hubState('hubLoading');
+  const target=url||s.url;
+  if(!online||!(await reachable(target))){ if(f&&f.dataset.ok&&f.dataset.mode==='offline'&&!force){hubShowFrame(key);hubState(null);hubBadge();return} return hubGoOffline(key) }
+  if(hubKey!==key)return;
+  if(s.check){const st=await siteStatus(s.url); if(st===404){ if(hubKey===key){$h('hubSoonTitle').textContent=s.soon;$h('hubSoonText').textContent=s.soonText;hubState('hubSoon')} return }}
+  hubMakeFrame(key,target,'live',()=>hubGoOffline(key));
+}
+function hubRetry(){if(hubKey)hubLoad(hubKey,null,true)}
+function hubReload(){if(!hubKey)return;const f=hubFrames[hubKey];if(f&&f.dataset.ok&&f.dataset.mode==='live'){delete f.dataset.ok;hubState('hubLoading');const u=f.src;f.src='about:blank';setTimeout(()=>{f.src=u},30)}else hubRetry()}
+function hubExternal(){const s=HUB[hubKey];if(!s||!s.url)return;const u=new URL(s.url);u.searchParams.set('hxext','1');window.open(u.toString(),'_blank')}
+function hubBack(){history.back()}
+// links from inside the sites (target=_blank) are routed here by the Android shell
+window.hxOpenUrl=function(url){
+  try{const u=new URL(url);const host=u.hostname;
+    if(host==='heyyanixx-learn.sites.tab.bot')return openHub('learn',{url});
+    if(host==='heyyanixx-tools.sites.tab.bot')return openHub('tools',{url});
+    if(host==='heyyanixx.sites.tab.bot')return openHub(/^#play/.test(u.hash)?'games':'portfolio',{url});
+    if(host==='heyyanixx-app.sites.tab.bot')return go('home');
+  }catch(e){}
+  const u2=new URL(url);u2.searchParams.set('hxext','1');window.open(u2.toString(),'_blank');
+};
+function openSite(u){window.hxOpenUrl(u)}
+window.addEventListener('popstate',e=>{
+  const st=e.state||{s:'home'};
+  if(st.v) openHub(st.v,{fromPop:true}); else go(st.s||'home',null,true);
+});
+history.replaceState({s:'home'},'');
+window.addEventListener('online',()=>{if(hubKey&&$h('hubOffline').classList.contains('on'))hubRetry()});
+// Android hardware back: close the hub / go back a screen, exit only from Home
+(function(){
+  const App=window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.App;
+  if(!isNative()||!App)return;
+  App.addListener('backButton',()=>{
+    if(document.getElementById('moreSheet').classList.contains('open')){toggleMore();return}
+    const st=history.state||{};
+    if(st.v||(st.s&&st.s!=='home'))history.back(); else App.exitApp();
+  });
+})();
 // ===== v2: site links, boot loader, media fade-in =====
-function openSite(u){try{window.open(u,'_blank')}catch(e){location.href=u}}
 (function(){
   const boot=document.getElementById('boot');
   const hide=()=>{if(boot&&!boot.classList.contains('done')){boot.classList.add('done');setTimeout(()=>boot.remove(),600)}};

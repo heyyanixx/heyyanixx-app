@@ -49,13 +49,15 @@ jobs:
           find $RES -type d -empty -delete
           # copy the HEYYANIXX resources (resources/android/res) on top
           cp -r resources/android/res/. $RES/
+          # HEYYANIXX shell activity (routes new-window links into the in-app hub)
+          cp resources/android/java/com/heyyanixx/app/MainActivity.java android/app/src/main/java/com/heyyanixx/app/MainActivity.java
           # app version shown in Android settings
           sed -i -E "s/versionCode [0-9]+/versionCode ${APP_VERSION_CODE}/; s/versionName \"[^\"]*\"/versionName \"${APP_VERSION_NAME}\"/" android/app/build.gradle
           grep -E "versionCode|versionName" android/app/build.gradle
           chmod +x android/gradlew
         env:
-          APP_VERSION_NAME: "2.0.0"
-          APP_VERSION_CODE: "200"
+          APP_VERSION_NAME: "2.1.0"
+          APP_VERSION_CODE: "210"
 
       - name: Build debug APK with Gradle
         working-directory: android
@@ -76,6 +78,6 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk heyyanixx-app-debug.apk
           gh release create "build-${{ github.run_number }}" heyyanixx-app-debug.apk \
             --repo "${{ github.repository }}" \
-            --title "HEYYANIXX app v2.0.0 — build ${{ github.run_number }}" \
-            --notes "HEYYANIXX v2.0.0 — new gold HX icon, splash screen and premium black + gold theme. Android APK (debug build): download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once). If Android says the app conflicts with an existing one, uninstall the old HEYYANIXX first." \
+            --title "HEYYANIXX app v2.1.0 — build ${{ github.run_number }}" \
+            --notes "HEYYANIXX v2.1.0 — app hub: Games, Learn Arcade, ADCA Tools and Portfolio open live inside the app (offline copies of the games built in), new gold HX icon, splash and black + gold theme. Android APK (debug build): download heyyanixx-app-debug.apk on your phone and install it (allow 'install unknown apps' once). If Android says the app conflicts with an existing one, uninstall the old HEYYANIXX first." \
             --latest

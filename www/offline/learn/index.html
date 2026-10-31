@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<title>HEYYANIXX Learn Arcade — Free Learning Games for BCA, Coding, Commerce, CA & SSC</title>
+<meta name="description" content="Free 1–3 minute games: C programming, AI prompting, typing, BCA quiz, Free Fire tactics + Video Editing Zone (Premiere Pro, After Effects, DaVinci Resolve shortcuts, timeline, export, motion) + Commerce/CA/SSC zone. By HEYYANIXX.">
+<meta name="theme-color" content="#060608">
+<meta property="og:title" content="HEYYANIXX Learn Arcade — Free Learning Games for BCA, Coding, Commerce, CA & SSC">
+<meta property="og:description" content="Free 1–3 minute games: C programming, AI prompting, typing, BCA quiz, Free Fire tactics + Video Editing Zone (Premiere Pro, After Effects, DaVinci Resolve shortcuts, timeline, export, motion) + Commerce/CA/SSC zone. By HEYYANIXX.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://heyyanixx-learn.sites.tab.bot/">
+<meta property="og:image" content="https://heyyanixx-learn.sites.tab.bot/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="sr-only" href="#games">Skip to games</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./" aria-label="HEYYANIXX Learn Arcade home"><span class="mark">HX</span><span><b>HEYYANIXX</b><small>Learn Arcade</small></span></a>
+  <span class="sp"></span>
+  <span class="pill" id="pillLvl" title="Level">Lv 1</span>
+  <span class="pill" id="pillStreak" title="Daily streak">🔥 0</span>
+  <button class="iconbtn" id="soundBtn" aria-label="Sound on/off">🔊</button>
+</div></header>
+<main id="main">
+<div class="wrap">
+  <div class="ad" data-slot="top"><span class="ad-label">Advertisement</span><div class="ad-box">Ad slot · top banner</div></div>
+  <section class="hero" aria-labelledby="h1">
+    <p class="kicker">Free · No login · 1–3 min games</p>
+    <h1 id="h1">Khelo. Seekho. <span>Level up.</span></h1>
+    <p class="lead">Typing, C coding, AI prompting, BCA quiz, Free Fire brain, naya 🎬 Video Editing Zone (Premiere Pro, After Effects, DaVinci) — aur Commerce, CA, GST &amp; Sarkari exam games bhi. XP kamao, streak banao, dosto ko challenge bhejo.</p>
+  </section>
+  <div class="card vs" id="vsCard" role="status"></div>
+  <div style="margin-top:18px">
+    <section class="card daily" aria-labelledby="dailyH">
+      <span class="tag" id="dailyTag">Aaj ka challenge</span>
+      <h3 id="dailyH">Daily Challenge</h3>
+      <p id="dailyTxt">…</p>
+      <div class="row"><span class="stat">Reward: <b>+150 XP</b> · 🎯 badge</span><button class="btn btn-gold btn-sm" id="dailyGo">Play</button></div>
+    </section>
+  </div>
+  <div class="sec-h" id="games"><h2>Games</h2><span>Tap karo, khelo</span></div>
+  <div class="games" id="gameGrid"></div>
+
+  <section class="zone-h vz-zone" id="editzone" aria-labelledby="vidH">
+    <span class="tag">New</span>
+    <h2 id="vidH">🎬 Video Editing Zone</h2>
+    <p>Premiere Pro, After Effects, DaVinci Resolve aur phone editing — game khel ke seekho. Asli shortcuts, timeline puzzles, beat cut, export settings aur motion easing.</p>
+    <p class="vz-zsrc">⌨️ Shortcuts official docs se check kiye (Adobe Help Center · Blackmagic DaVinci Resolve 20 Beginner’s Guide). Practice ke liye — Adobe / Blackmagic Design se affiliated nahi.</p>
+  </section>
+  <div class="games" id="vidGrid"></div>
+
+  <section class="zone-h" id="exam" aria-labelledby="examH">
+    <span class="tag">New</span>
+    <h2 id="examH">📊 Commerce • CA • Sarkari Exam Zone</h2>
+    <p>B.Com, CA Foundation, SSC, Bank aur Railway ki taiyari — game khel ke. Tally-style GST vouchers, journal entries, balance sheet, mental maths, reasoning aur static GK.</p>
+  </section>
+  <div class="games" id="examGrid"></div>
+
+  <div class="ad" data-slot="between"><span class="ad-label">Advertisement</span><div class="ad-box">Ad slot · between sections</div></div>
+
+  <div class="sec-h"><h2>Your progress</h2><span>Device pe save</span></div>
+    <section class="card" aria-label="Your progress">
+      <div class="player">
+        <div class="ring" id="ring"><b id="lvl">1</b><small>LEVEL</small></div>
+        <div class="meta">
+          <div class="t" id="ptitle">Noob</div>
+          <div class="bar" aria-hidden="true"><i id="xpbar"></i></div>
+          <div class="stats"><span class="stat"><b id="xpTxt">0</b> XP</span><span class="stat">🔥 <b id="stTxt">0</b> day streak</span><span class="stat">🏅 <b id="bdTxt">0</b> badges</span></div>
+        </div>
+      </div>
+    </section>
+  <div class="sec-h"><h2>Badges</h2><span id="bdCount">0 / 0</span></div>
+  <div class="badges" id="badgeGrid"></div>
+
+  <section class="card creator" aria-label="Creator">
+    <div><span class="tag dim">Made by</span><h3 style="margin-top:8px">HEYYANIXX · Anish</h3><p>BCA (AI) student + Free Fire India creator. Naye games aur tips ke liye follow karo.</p></div>
+    <div class="links">
+      <a class="btn btn-ig btn-sm" href="https://instagram.com/heyyy.anixx_" target="_blank" rel="noopener">📸 Follow @heyyy.anixx_</a>
+      <a class="btn btn-yt btn-sm" href="https://youtube.com/@smart_anish69" target="_blank" rel="noopener">▶ Subscribe @smart_anish69</a>
+      <a class="btn btn-ghost btn-sm" href="https://heyyanixx.sites.tab.bot/" target="_blank" rel="noopener">🌐 Portfolio</a>
+    </div>
+  </section>
+</div>
+</main>
+
+<div class="layer" id="layer" role="dialog" aria-modal="true" aria-labelledby="gTitle">
+  <div class="gbar">
+    <button class="iconbtn" id="gClose" aria-label="Close game">✕</button>
+    <div class="gt" id="gTitle">Game</div>
+    <button class="iconbtn" id="gSound" aria-label="Sound on/off">🔊</button>
+    <div class="sc" id="gScore" aria-live="polite">0</div>
+  </div>
+  <div class="hud" id="hud"></div>
+  <div class="timebar" id="timebar" hidden><i></i></div>
+  <div class="stage" id="stage"></div>
+  <div class="pause" id="pause"><div><h3>Paused</h3><button class="btn btn-gold" id="resume">▶ Resume</button></div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer><div class="wrap">
+  <nav aria-label="Site"><a href="./">Arcade</a><a href="about">About</a><a href="privacy">Privacy Policy</a><a href="contact">Contact</a><a href="https://heyyanixx.sites.tab.bot/" rel="noopener">HEYYANIXX Portfolio</a></nav>
+  <p style="margin:0">© 2026 HEYYANIXX (Anish). Free learning games for students. FF Brain &amp; FF Quiz Run are fan-made and not affiliated with, endorsed or sponsored by Garena. GST Voucher Master is a practice game, not affiliated with Tally Solutions. The Video Editing Zone is for practice and is not affiliated with Adobe or Blackmagic Design; Premiere Pro and After Effects are Adobe trademarks, DaVinci Resolve is a Blackmagic Design trademark. All game names are trademarks of their owners.</p>
+</div></footer>
+<script src="js/ads-config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/games.js"></script>
+<script src="js/games2.js"></script>
+<script src="js/data-com.js"></script>
+<script src="js/games3.js"></script>
+<script src="js/data-vid.js"></script>
+<script src="js/games4.js"></script>
+<script src="js/boot.js"></script>
+</body>
+</html>

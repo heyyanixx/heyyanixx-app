@@ -9,7 +9,10 @@
     "contentInset": "always"
   },
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "allowNavigation": [
+      "*.sites.tab.bot"
+    ]
   },
   "webDir": "www"
 }
